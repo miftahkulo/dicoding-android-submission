@@ -1,0 +1,65 @@
+import com.indramahkota.buildSrc.Libs
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk project.ext.compileSdk
+
+    defaultConfig {
+        minSdk project.ext.minSdk
+        targetSdk project.ext.targetSdk
+        versionCode project.ext.versionCode
+        versionName project.ext.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+kapt {
+    arguments {
+        // Make Hilt share the same definition of Components in tests instead of
+        // creating a new set of Components per test class.
+        arg("dagger.hilt.shareTestComponents", "true")
+    }
+}
+
+dependencies {
+    implementation project(":common")
+    implementation project(":data")
+    implementation project(":domain")
+
+    // Common Libs
+    implementation Libs.Android.material
+    implementation Libs.AndroidX.appcompat
+    implementation Libs.AndroidX.Constraint.constraintLayout
+
+    // Hilt
+    implementation Libs.Dagger.hiltAndroid
+    kapt Libs.Dagger.hiltAndroidCompiler
+}

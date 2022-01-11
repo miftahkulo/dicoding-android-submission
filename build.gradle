@@ -1,0 +1,33 @@
+import com.indramahkota.buildSrc.Libs
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath Libs.androidGradlePlugin
+        classpath Libs.Kotlin.gradlePlugin
+        classpath Libs.Dagger.hiltGradlePlugin
+        classpath Libs.AndroidX.Navigation.navigationSafeArguments
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle.kts files
+    }
+}
+
+// The "all projects" section is for the modules being built by Gradle.
+allprojects {
+    project.ext {
+        minSdk = 23
+        targetSdk = 31
+        compileSdk = 31
+        versionCode = 1
+        versionName = "1.0.0"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

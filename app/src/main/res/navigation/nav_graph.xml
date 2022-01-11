@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.indramahkota.hiltexample.presentation.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/regularFeatureFragment"
+        android:name="com.indramahkota.regular_feature.RegularFeatureFragment"
+        android:label="RegularFeatureFragment"
+        tools:layout="@layout/fragment_regular_feature" />
+
+    <!-- Mitigasi kenapa jika moduleName diberikan dynamic feature tidak bekerja  -->
+    <!-- app:moduleName="Hilt_Example.dynamic_feature"
+        tools:layout="@layout/fragment_dynamic_feature" -->
+    <fragment
+        android:id="@+id/dynamicFeatureFragment"
+        android:name="com.indramahkota.dynamic_feature.DynamicFeatureFragment"
+        android:label="DynamicFeatureFragment" />
+
+</navigation>
