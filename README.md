@@ -5,14 +5,18 @@
 ## Structure
 ```
 - dicoding-android-submission
-    - buildSrc
+    - buildSrc (Kotlin Library)
         - dependencies
-    - app
-        - app (UI / Main)
-        - data
-        - domain
-        - common
-    - favorite (Dynamic Feature)
+    - app (Android Application)
+        - UI / Main
+    - data (Android Library)
+        - Data Source
+    - domain (Android Library)
+        - Model
+    - common (Android Library)
+        - Shared Resource
+    - favorite (Android Dynamic Feature)
+        - Favorite Feature
 ```
 
 ## How To Use 🔧
