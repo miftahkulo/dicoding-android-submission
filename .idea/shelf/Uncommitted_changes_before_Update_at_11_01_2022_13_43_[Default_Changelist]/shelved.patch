@@ -1,0 +1,2595 @@
+Index: regular_feature/src/main/res/values/strings.xml
+===================================================================
+diff --git a/regular_feature/src/main/res/values/strings.xml b/regular_feature/src/main/res/values/strings.xml
+deleted file mode 100644
+--- a/regular_feature/src/main/res/values/strings.xml	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,4 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<resources>
+-    <string name="regular_regular_feature">Regular Feature</string>
+-</resources>
+\ No newline at end of file
+Index: dynamic_feature/src/main/res/layout/fragment_dynamic_feature.xml
+===================================================================
+diff --git a/dynamic_feature/src/main/res/layout/fragment_dynamic_feature.xml b/dynamic_feature/src/main/res/layout/fragment_dynamic_feature.xml
+deleted file mode 100644
+--- a/dynamic_feature/src/main/res/layout/fragment_dynamic_feature.xml	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,12 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent">
+-
+-    <TextView
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent"
+-        android:gravity="center"
+-        android:text="@string/dynamic_dynamic_feature" />
+-
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: regular_feature/build.gradle
+===================================================================
+diff --git a/regular_feature/build.gradle b/regular_feature/build.gradle
+deleted file mode 100644
+--- a/regular_feature/build.gradle	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,65 +0,0 @@
+-import com.indramahkota.buildSrc.Libs
+-
+-plugins {
+-    id 'com.android.library'
+-    id 'kotlin-android'
+-    id 'kotlin-kapt'
+-    id 'dagger.hilt.android.plugin'
+-}
+-
+-android {
+-    compileSdk project.ext.compileSdk
+-
+-    defaultConfig {
+-        minSdk project.ext.minSdk
+-        targetSdk project.ext.targetSdk
+-        versionCode project.ext.versionCode
+-        versionName project.ext.versionName
+-
+-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+-        consumerProguardFiles "consumer-rules.pro"
+-    }
+-
+-    buildTypes {
+-        release {
+-            minifyEnabled false
+-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+-        }
+-    }
+-
+-    compileOptions {
+-        sourceCompatibility JavaVersion.VERSION_1_8
+-        targetCompatibility JavaVersion.VERSION_1_8
+-    }
+-
+-    kotlinOptions {
+-        jvmTarget = '1.8'
+-    }
+-
+-    buildFeatures {
+-        viewBinding true
+-    }
+-}
+-
+-kapt {
+-    arguments {
+-        // Make Hilt share the same definition of Components in tests instead of
+-        // creating a new set of Components per test class.
+-        arg("dagger.hilt.shareTestComponents", "true")
+-    }
+-}
+-
+-dependencies {
+-    implementation project(":common")
+-    implementation project(":data")
+-    implementation project(":domain")
+-
+-    // Common Libs
+-    implementation Libs.Android.material
+-    implementation Libs.AndroidX.appcompat
+-    implementation Libs.AndroidX.Constraint.constraintLayout
+-
+-    // Hilt
+-    implementation Libs.Dagger.hiltAndroid
+-    kapt Libs.Dagger.hiltAndroidCompiler
+-}
+\ No newline at end of file
+Index: .idea/.name
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.name b/.idea/.name
+deleted file mode 100644
+--- a/.idea/.name	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,1 +0,0 @@
+-Hilt Example
+\ No newline at end of file
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+deleted file mode 100644
+--- a/.idea/gradle.xml	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,26 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="GradleMigrationSettings" migrationVersion="1" />
+-  <component name="GradleSettings">
+-    <option name="linkedExternalProjectsSettings">
+-      <GradleProjectSettings>
+-        <option name="testRunner" value="GRADLE" />
+-        <option name="distributionType" value="DEFAULT_WRAPPED" />
+-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+-        <option name="modules">
+-          <set>
+-            <option value="$PROJECT_DIR$" />
+-            <option value="$PROJECT_DIR$/app" />
+-            <option value="$PROJECT_DIR$/buildSrc" />
+-            <option value="$PROJECT_DIR$/common" />
+-            <option value="$PROJECT_DIR$/data" />
+-            <option value="$PROJECT_DIR$/domain" />
+-            <option value="$PROJECT_DIR$/dynamic_feature" />
+-            <option value="$PROJECT_DIR$/regular_feature" />
+-          </set>
+-        </option>
+-        <option name="resolveModulePerSourceSet" value="false" />
+-      </GradleProjectSettings>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: regular_feature/src/test/java/com/indramahkota/regular_feature/ExampleUnitTest.kt
+===================================================================
+diff --git a/regular_feature/src/test/java/com/indramahkota/regular_feature/ExampleUnitTest.kt b/regular_feature/src/test/java/com/indramahkota/regular_feature/ExampleUnitTest.kt
+deleted file mode 100644
+--- a/regular_feature/src/test/java/com/indramahkota/regular_feature/ExampleUnitTest.kt	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,17 +0,0 @@
+-package com.indramahkota.regular_feature
+-
+-import org.junit.Test
+-
+-import org.junit.Assert.*
+-
+-/**
+- * Example local unit test, which will execute on the development machine (host).
+- *
+- * See [testing documentation](http://d.android.com/tools/testing).
+- */
+-class ExampleUnitTest {
+-    @Test
+-    fun addition_isCorrect() {
+-        assertEquals(4, 2 + 2)
+-    }
+-}
+\ No newline at end of file
+Index: regular_feature/src/androidTest/java/com/indramahkota/regular_feature/ExampleInstrumentedTest.kt
+===================================================================
+diff --git a/regular_feature/src/androidTest/java/com/indramahkota/regular_feature/ExampleInstrumentedTest.kt b/regular_feature/src/androidTest/java/com/indramahkota/regular_feature/ExampleInstrumentedTest.kt
+deleted file mode 100644
+--- a/regular_feature/src/androidTest/java/com/indramahkota/regular_feature/ExampleInstrumentedTest.kt	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,24 +0,0 @@
+-package com.indramahkota.regular_feature
+-
+-import androidx.test.platform.app.InstrumentationRegistry
+-import androidx.test.ext.junit.runners.AndroidJUnit4
+-
+-import org.junit.Test
+-import org.junit.runner.RunWith
+-
+-import org.junit.Assert.*
+-
+-/**
+- * Instrumented test, which will execute on an Android device.
+- *
+- * See [testing documentation](http://d.android.com/tools/testing).
+- */
+-@RunWith(AndroidJUnit4::class)
+-class ExampleInstrumentedTest {
+-    @Test
+-    fun useAppContext() {
+-        // Context of the app under test.
+-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+-        assertEquals("com.indramahkota.regular_feature.test", appContext.packageName)
+-    }
+-}
+\ No newline at end of file
+Index: regular_feature/src/main/AndroidManifest.xml
+===================================================================
+diff --git a/regular_feature/src/main/AndroidManifest.xml b/regular_feature/src/main/AndroidManifest.xml
+deleted file mode 100644
+--- a/regular_feature/src/main/AndroidManifest.xml	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,2 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<manifest package="com.indramahkota.regular_feature" />
+\ No newline at end of file
+Index: regular_feature/src/main/java/com/indramahkota/regular_feature/RegularFeatureFragment.kt
+===================================================================
+diff --git a/regular_feature/src/main/java/com/indramahkota/regular_feature/RegularFeatureFragment.kt b/regular_feature/src/main/java/com/indramahkota/regular_feature/RegularFeatureFragment.kt
+deleted file mode 100644
+--- a/regular_feature/src/main/java/com/indramahkota/regular_feature/RegularFeatureFragment.kt	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,34 +0,0 @@
+-package com.indramahkota.regular_feature
+-
+-import android.os.Bundle
+-import android.util.Log
+-import android.view.LayoutInflater
+-import android.view.View
+-import android.view.ViewGroup
+-import com.indramahkota.common.base.BaseBindingFragment
+-import com.indramahkota.domain.SampleRepository
+-import com.indramahkota.regular_feature.databinding.FragmentRegularFeatureBinding
+-import dagger.hilt.android.AndroidEntryPoint
+-import javax.inject.Inject
+-
+-@AndroidEntryPoint
+-class RegularFeatureFragment : BaseBindingFragment() {
+-    private var _binding: FragmentRegularFeatureBinding? = null
+-    private val binding get() = _binding!!
+-
+-    @Inject
+-    lateinit var repository: SampleRepository
+-
+-    override fun bindFragment(inflater: LayoutInflater, container: ViewGroup?): View {
+-        _binding = FragmentRegularFeatureBinding.inflate(inflater, container, false)
+-        return binding.root
+-    }
+-
+-    override fun setupUI(view: View, savedInstanceState: Bundle?) {
+-        Log.d("LOGGING", "Regular Feature: ${repository.getMessage()}")
+-    }
+-
+-    override fun unbindFragment() {
+-        _binding = null
+-    }
+-}
+\ No newline at end of file
+Index: regular_feature/proguard-rules.pro
+===================================================================
+diff --git a/regular_feature/proguard-rules.pro b/regular_feature/proguard-rules.pro
+deleted file mode 100644
+--- a/regular_feature/proguard-rules.pro	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,21 +0,0 @@
+-# Add project specific ProGuard rules here.
+-# You can control the set of applied configuration files using the
+-# proguardFiles setting in build.gradle.
+-#
+-# For more details, see
+-#   http://developer.android.com/guide/developing/tools/proguard.html
+-
+-# If your project uses WebView with JS, uncomment the following
+-# and specify the fully qualified class name to the JavaScript interface
+-# class:
+-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+-#   public *;
+-#}
+-
+-# Uncomment this to preserve the line number information for
+-# debugging stack traces.
+-#-keepattributes SourceFile,LineNumberTable
+-
+-# If you keep the line number information, uncomment this to
+-# hide the original source file name.
+-#-renamesourcefileattribute SourceFile
+\ No newline at end of file
+Index: .idea/.gitignore
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+deleted file mode 100644
+--- a/.idea/.gitignore	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,3 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+Index: regular_feature/.gitignore
+===================================================================
+diff --git a/regular_feature/.gitignore b/regular_feature/.gitignore
+deleted file mode 100644
+--- a/regular_feature/.gitignore	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,1 +0,0 @@
+-/build
+\ No newline at end of file
+Index: dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/DynamicFeatureFragmentExtension.kt
+===================================================================
+diff --git a/dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/DynamicFeatureFragmentExtension.kt b/dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/DynamicFeatureFragmentExtension.kt
+deleted file mode 100644
+--- a/dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/DynamicFeatureFragmentExtension.kt	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,15 +0,0 @@
+-package com.indramahkota.dynamic_feature
+-
+-import com.indramahkota.dynamic_feature.di.DaggerDynamicFeatureComponent
+-import com.indramahkota.hiltexample.di.DynamicFeatureDependencies
+-import dagger.hilt.android.EntryPointAccessors
+-
+-internal fun DynamicFeatureFragment.inject() {
+-    DaggerDynamicFeatureComponent.factory().create(
+-        requireContext(),
+-        EntryPointAccessors.fromApplication(
+-            requireContext().applicationContext,
+-            DynamicFeatureDependencies::class.java
+-        )
+-    ).inject(this)
+-}
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+deleted file mode 100644
+--- a/.idea/vcs.xml	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="VcsDirectoryMappings">
+-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/git_toolbox_prj.xml
+===================================================================
+diff --git a/.idea/git_toolbox_prj.xml b/.idea/git_toolbox_prj.xml
+deleted file mode 100644
+--- a/.idea/git_toolbox_prj.xml	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,15 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="GitToolBoxProjectSettings">
+-    <option name="commitMessageIssueKeyValidationOverride">
+-      <BoolValueOverride>
+-        <option name="enabled" value="true" />
+-      </BoolValueOverride>
+-    </option>
+-    <option name="commitMessageValidationConfigOverride">
+-      <CommitMessageValidationOverride>
+-        <option name="enabled" value="true" />
+-      </CommitMessageValidationOverride>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+deleted file mode 100644
+--- a/.idea/misc.xml	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,20 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="DesignSurface">
+-    <option name="filePathToZoomLevelMap">
+-      <map>
+-        <entry key="..\:/Programming/Kotlin/hilt-example/app/src/main/res/layout/activity_main.xml" value="0.2" />
+-        <entry key="..\:/Programming/Kotlin/hilt-example/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+-        <entry key="..\:/Programming/Kotlin/hilt-example/dynamic_feature/src/main/res/layout/fragment_dynamic_feature.xml" value="0.152" />
+-        <entry key="..\:/Programming/Kotlin/hilt-example/regular_feature/src/main/res/layout/fragment_regular_feature.xml" value="0.2704791344667697" />
+-        <entry key="..\:/Programming/Kotlin/hilt-multi-module-sample/app/src/main/res/layout/activity_main.xml" value="0.1816123188405797" />
+-      </map>
+-    </option>
+-  </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+-    <output url="file://$PROJECT_DIR$/build/classes" />
+-  </component>
+-  <component name="ProjectType">
+-    <option name="id" value="Android" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+deleted file mode 100644
+--- a/.idea/compiler.xml	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ /dev/null	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="CompilerConfiguration">
+-    <bytecodeTargetLevel target="11" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: data/src/main/java/com/indramahkota/data/utils/SortUtils.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/utils/SortUtils.kt b/data/src/main/java/com/indramahkota/data/utils/SortUtils.kt
+new file mode 100644
+--- /dev/null	(date 1641878734730)
++++ b/data/src/main/java/com/indramahkota/data/utils/SortUtils.kt	(date 1641878734730)
+@@ -0,0 +1,88 @@
++package com.indramahkota.data.utils
++
++import androidx.sqlite.db.SimpleSQLiteQuery
++
++object SortUtils {
++    private const val VOTE = "Vote"
++    private const val NEWEST = "Newest"
++    private const val RANDOM = "Random"
++    private const val POPULARITY = "Popularity"
++
++    fun getSortedQueryMovies(filter: String): SimpleSQLiteQuery {
++        val simpleQuery = StringBuilder().append("SELECT * FROM movie where is_tv = 0 ")
++        when (filter) {
++            POPULARITY -> {
++                simpleQuery.append("ORDER BY popularity DESC")
++            }
++            NEWEST -> {
++                simpleQuery.append("ORDER BY release_date DESC")
++            }
++            VOTE -> {
++                simpleQuery.append("ORDER BY vote_average DESC")
++            }
++            RANDOM -> {
++                simpleQuery.append("ORDER BY RANDOM()")
++            }
++        }
++        return SimpleSQLiteQuery(simpleQuery.toString())
++    }
++
++    fun getSortedQueryTvShows(filter: String): SimpleSQLiteQuery {
++        val simpleQuery = StringBuilder().append("SELECT * FROM movie where is_tv = 1 ")
++        when (filter) {
++            POPULARITY -> {
++                simpleQuery.append("ORDER BY popularity DESC")
++            }
++            NEWEST -> {
++                simpleQuery.append("ORDER BY release_date DESC")
++            }
++            VOTE -> {
++                simpleQuery.append("ORDER BY vote_average DESC")
++            }
++            RANDOM -> {
++                simpleQuery.append("ORDER BY RANDOM()")
++            }
++        }
++        return SimpleSQLiteQuery(simpleQuery.toString())
++    }
++
++    fun getSortedQueryFavoriteMovies(filter: String): SimpleSQLiteQuery {
++        val simpleQuery =
++            StringBuilder().append("SELECT * FROM movie where favorite = 1 and is_tv = 0 ")
++        when (filter) {
++            POPULARITY -> {
++                simpleQuery.append("ORDER BY popularity DESC")
++            }
++            NEWEST -> {
++                simpleQuery.append("ORDER BY release_date DESC")
++            }
++            VOTE -> {
++                simpleQuery.append("ORDER BY vote_average DESC")
++            }
++            RANDOM -> {
++                simpleQuery.append("ORDER BY RANDOM()")
++            }
++        }
++        return SimpleSQLiteQuery(simpleQuery.toString())
++    }
++
++    fun getSortedQueryFavoriteTvShows(filter: String): SimpleSQLiteQuery {
++        val simpleQuery =
++            StringBuilder().append("SELECT * FROM movie where Favorite = 1 and is_tv = 1 ")
++        when (filter) {
++            POPULARITY -> {
++                simpleQuery.append("ORDER BY popularity DESC")
++            }
++            NEWEST -> {
++                simpleQuery.append("ORDER BY release_date DESC")
++            }
++            VOTE -> {
++                simpleQuery.append("ORDER BY vote_average DESC")
++            }
++            RANDOM -> {
++                simpleQuery.append("ORDER BY RANDOM()")
++            }
++        }
++        return SimpleSQLiteQuery(simpleQuery.toString())
++    }
++}
+\ No newline at end of file
+Index: data/src/main/java/com/indramahkota/data/utils/DataMapper.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/utils/DataMapper.kt b/data/src/main/java/com/indramahkota/data/utils/DataMapper.kt
+new file mode 100644
+--- /dev/null	(date 1641878797078)
++++ b/data/src/main/java/com/indramahkota/data/utils/DataMapper.kt	(date 1641878797078)
+@@ -0,0 +1,59 @@
++package com.indramahkota.data.utils
++
++import com.indramahkota.common.utils.Constant.LOREM_IPSUM
++import com.indramahkota.data.source.local.entity.MovieEntity
++import com.indramahkota.data.source.remote.response.MovieDto
++import com.indramahkota.domain.model.Movie
++
++fun MovieDto.toMovieEntity(isTvShow: Boolean = false) = MovieEntity(
++    id = id,
++    title = title ?: (name ?: ""),
++    voteCount = voteCount,
++    posterPath = posterPath,
++    overview = if (overview.isEmpty()) LOREM_IPSUM else overview,
++    originalLanguage = originalLanguage,
++    releaseDate = releaseDate ?: (firstAirDate ?: ""),
++    popularity = popularity,
++    voteAverage = voteAverage,
++    isTvShows = isTvShow,
++    favorite = false
++)
++
++@JvmName("toListMovieEntity1")
++fun List<MovieDto>.toListMovieEntity(isTvShow: Boolean = false) =
++    this.map {
++        it.toMovieEntity(isTvShow)
++    }
++
++fun MovieEntity.toMovie(isTvShow: Boolean = false) = Movie(
++    id = id,
++    title = title,
++    voteCount = voteCount,
++    posterPath = posterPath,
++    overview = overview,
++    originalLanguage = originalLanguage,
++    releaseDate = formatDateFromString(releaseDate, "yyyy-MM-dd", "EE, d MMM yyyy"),
++    popularity = popularity,
++    voteAverage = voteAverage,
++    isTvShows = isTvShow,
++    favorite = favorite
++)
++
++fun List<MovieEntity>.toListMovie(isTvShow: Boolean = false) =
++    this.map {
++        it.toMovie(isTvShow)
++    }
++
++fun Movie.toMovieEntity(isTvShow: Boolean = false) = MovieEntity(
++    id = id,
++    title = title,
++    voteCount = voteCount,
++    posterPath = posterPath,
++    overview = overview,
++    originalLanguage = originalLanguage,
++    releaseDate = releaseDate,
++    popularity = popularity,
++    voteAverage = voteAverage,
++    isTvShows = isTvShow,
++    favorite = favorite
++)
+\ No newline at end of file
+Index: data/src/main/java/com/indramahkota/data/utils/DateUtils.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/utils/DateUtils.kt b/data/src/main/java/com/indramahkota/data/utils/DateUtils.kt
+new file mode 100644
+--- /dev/null	(date 1641878729993)
++++ b/data/src/main/java/com/indramahkota/data/utils/DateUtils.kt	(date 1641878729993)
+@@ -0,0 +1,28 @@
++package com.indramahkota.data.utils
++
++import com.indramahkota.common.utils.Constant.DATE_PARSE_ERROR
++import java.text.ParseException
++import java.text.SimpleDateFormat
++import java.util.*
++
++/**
++ * Example
++ * inFormat: yyyy-MM-dd
++ * outFormat: EEEE, d MMMM yyyy
++ * **/
++fun formatDateFromString(inputDate: String, inFormat: String, outFormat: String): String {
++    val parsed: Date?
++    var outputDate = ""
++    val locale = Locale("en", "EN")
++    val dfInput = SimpleDateFormat(inFormat, locale)
++    val dfOutput = SimpleDateFormat(outFormat, locale)
++    try {
++        parsed = dfInput.parse(inputDate)
++        if (parsed != null) {
++            outputDate = dfOutput.format(parsed)
++        }
++    } catch (e: ParseException) {
++        print(DATE_PARSE_ERROR)
++    }
++    return outputDate
++}
+\ No newline at end of file
+Index: data/src/main/java/com/indramahkota/data/utils/AppExecutors.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/utils/AppExecutors.kt b/data/src/main/java/com/indramahkota/data/utils/AppExecutors.kt
+new file mode 100644
+--- /dev/null	(date 1641878661848)
++++ b/data/src/main/java/com/indramahkota/data/utils/AppExecutors.kt	(date 1641878661848)
+@@ -0,0 +1,40 @@
++package com.indramahkota.data.utils
++
++import android.os.Handler
++import android.os.Looper
++import androidx.annotation.VisibleForTesting
++
++import java.util.concurrent.Executor
++import java.util.concurrent.Executors
++import javax.inject.Inject
++
++class AppExecutors @VisibleForTesting constructor(
++    private val diskIO: Executor,
++    private val networkIO: Executor,
++    private val mainThread: Executor
++) {
++    companion object {
++        private const val THREAD_COUNT = 3
++    }
++
++    @Inject
++    constructor() : this(
++        Executors.newSingleThreadExecutor(),
++        Executors.newFixedThreadPool(THREAD_COUNT),
++        MainThreadExecutor()
++    )
++
++    fun diskIO(): Executor = diskIO
++
++    fun networkIO(): Executor = networkIO
++
++    fun mainThread(): Executor = mainThread
++
++    private class MainThreadExecutor : Executor {
++        private val mainThreadHandler = Handler(Looper.getMainLooper())
++
++        override fun execute(command: Runnable) {
++            mainThreadHandler.post(command)
++        }
++    }
++}
+\ No newline at end of file
+Index: data/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.library'\r\n    id 'kotlin-android'\r\n}\r\n\r\nandroid {\r\n    compileSdk project.ext.compileSdk\r\n\r\n    defaultConfig {\r\n        minSdk project.ext.minSdk\r\n        targetSdk project.ext.targetSdk\r\n        versionCode project.ext.versionCode\r\n        versionName project.ext.versionName\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n        consumerProguardFiles \"consumer-rules.pro\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n\r\n    kotlinOptions {\r\n        jvmTarget = '1.8'\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation project(\":domain\")\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/build.gradle b/data/build.gradle
+--- a/data/build.gradle	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/data/build.gradle	(date 1641881269388)
+@@ -1,6 +1,10 @@
++import com.indramahkota.buildSrc.Libs
++
+ plugins {
+     id 'com.android.library'
+     id 'kotlin-android'
++    id 'kotlin-kapt'
++    id 'dagger.hilt.android.plugin'
+ }
+ 
+ android {
+@@ -33,6 +37,32 @@
+     }
+ }
+ 
++kapt {
++    arguments {
++        // Make Hilt share the same definition of Components in tests instead of
++        // creating a new set of Components per test class.
++        arg("dagger.hilt.shareTestComponents", "true")
++    }
++}
++
+ dependencies {
++    implementation project(":common")
+     implementation project(":domain")
++
++    // Hilt
++    implementation Libs.Dagger.hiltAndroid
++    kapt Libs.Dagger.hiltAndroidCompiler
++
++    // Room
++    api Libs.AndroidX.Room.runtime
++    api Libs.AndroidX.Room.ktx
++    kapt Libs.AndroidX.Room.compiler
++
++    // Okhttp
++    api Libs.OkHttp.okhttp
++    api Libs.OkHttp.logging
++
++    // Retrofit
++    api Libs.Retrofit.retrofit
++    api Libs.Retrofit.gsonConverter
+ }
+\ No newline at end of file
+Index: dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/di/DynamicFeatureModule.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/di/DynamicFeatureModule.kt b/favorite/src/main/java/com/indramahkota/favorite/di/FavoriteModule.kt
+rename from dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/di/DynamicFeatureModule.kt
+rename to favorite/src/main/java/com/indramahkota/favorite/di/FavoriteModule.kt
+--- a/dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/di/DynamicFeatureModule.kt	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/favorite/src/main/java/com/indramahkota/favorite/di/FavoriteModule.kt	(date 1641882831909)
+@@ -1,8 +1,8 @@
+-package com.indramahkota.dynamic_feature.di
++package com.indramahkota.favorite.di
+ 
+ import androidx.lifecycle.ViewModel
+ import androidx.lifecycle.ViewModelProvider
+-import com.indramahkota.dynamic_feature.DynamicFeatureViewModel
++import com.indramahkota.favorite.FavoriteViewModel
+ import com.indramahkota.hiltexample.di.ViewModelFactory
+ import com.indramahkota.hiltexample.di.ViewModelKey
+ import dagger.Binds
+@@ -13,12 +13,12 @@
+ 
+ @Module
+ @InstallIn(ViewModelComponent::class)
+-abstract class DynamicFeatureModule {
++abstract class FavoriteModule {
+     @Binds
+     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+ 
+     @Binds
+     @IntoMap
+-    @ViewModelKey(DynamicFeatureViewModel::class)
+-    internal abstract fun bindDynamicFeatureViewModel(viewModel: DynamicFeatureViewModel): ViewModel
++    @ViewModelKey(FavoriteViewModel::class)
++    internal abstract fun bindFavoriteViewModel(viewModel: FavoriteViewModel): ViewModel
+ }
+\ No newline at end of file
+Index: dynamic_feature/src/androidTest/java/com/indramahkota/dynamic_feature/ExampleInstrumentedTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/dynamic_feature/src/androidTest/java/com/indramahkota/dynamic_feature/ExampleInstrumentedTest.kt b/favorite/src/androidTest/java/com/indramahkota/favorite/ExampleInstrumentedTest.kt
+rename from dynamic_feature/src/androidTest/java/com/indramahkota/dynamic_feature/ExampleInstrumentedTest.kt
+rename to favorite/src/androidTest/java/com/indramahkota/favorite/ExampleInstrumentedTest.kt
+--- a/dynamic_feature/src/androidTest/java/com/indramahkota/dynamic_feature/ExampleInstrumentedTest.kt	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/favorite/src/androidTest/java/com/indramahkota/favorite/ExampleInstrumentedTest.kt	(date 1641879274840)
+@@ -1,4 +1,4 @@
+-package com.indramahkota.dynamic_feature
++package com.indramahkota.favorite
+ 
+ import androidx.test.platform.app.InstrumentationRegistry
+ import androidx.test.ext.junit.runners.AndroidJUnit4
+Index: dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/di/DynamicFeatureComponent.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/di/DynamicFeatureComponent.kt b/favorite/src/main/java/com/indramahkota/favorite/di/FavoriteComponent.kt
+rename from dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/di/DynamicFeatureComponent.kt
+rename to favorite/src/main/java/com/indramahkota/favorite/di/FavoriteComponent.kt
+--- a/dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/di/DynamicFeatureComponent.kt	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/favorite/src/main/java/com/indramahkota/favorite/di/FavoriteComponent.kt	(date 1641882831897)
+@@ -1,25 +1,25 @@
+-package com.indramahkota.dynamic_feature.di
++package com.indramahkota.favorite.di
+ 
+ import android.content.Context
+-import com.indramahkota.dynamic_feature.DynamicFeatureFragment
+-import com.indramahkota.hiltexample.di.DynamicFeatureDependencies
++import com.indramahkota.favorite.FavoriteFragment
++import com.indramahkota.hiltexample.di.FavoriteDependencies
+ import dagger.BindsInstance
+ import dagger.Component
+ 
+ @Component(
+-    dependencies = [DynamicFeatureDependencies::class],
++    dependencies = [FavoriteDependencies::class],
+     modules = [
+-        DynamicFeatureModule::class
++        FavoriteModule::class
+     ]
+ )
+-interface DynamicFeatureComponent {
++interface FavoriteComponent {
+     @Component.Factory
+     interface Factory {
+         fun create(
+             @BindsInstance context: Context,
+-            dependencies: DynamicFeatureDependencies
+-        ): DynamicFeatureComponent
++            dependencies: FavoriteDependencies
++        ): FavoriteComponent
+     }
+ 
+-    fun inject(fragment: DynamicFeatureFragment)
++    fun inject(fragment: FavoriteFragment)
+ }
+\ No newline at end of file
+Index: dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/DynamicFeatureViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/DynamicFeatureViewModel.kt b/favorite/src/main/java/com/indramahkota/favorite/FavoriteViewModel.kt
+rename from dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/DynamicFeatureViewModel.kt
+rename to favorite/src/main/java/com/indramahkota/favorite/FavoriteViewModel.kt
+--- a/dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/DynamicFeatureViewModel.kt	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/favorite/src/main/java/com/indramahkota/favorite/FavoriteViewModel.kt	(date 1641882871614)
+@@ -1,9 +1,10 @@
+-package com.indramahkota.dynamic_feature
++package com.indramahkota.favorite
+ 
+ import androidx.lifecycle.ViewModel
+-import com.indramahkota.domain.SampleRepository
++import androidx.lifecycle.asLiveData
++import com.indramahkota.domain.usecase.MovieAppUseCase
+ import javax.inject.Inject
+ 
+-class DynamicFeatureViewModel @Inject constructor(val repository: SampleRepository) : ViewModel() {
+-    fun getMessage() = repository.getMessage()
++class FavoriteViewModel @Inject constructor(val useCase: MovieAppUseCase) : ViewModel() {
++    val getFavoriteMovies = useCase.getFavoriteMovies("Newest").asLiveData()
+ }
+\ No newline at end of file
+Index: dynamic_feature/src/test/java/com/indramahkota/dynamic_feature/ExampleUnitTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/dynamic_feature/src/test/java/com/indramahkota/dynamic_feature/ExampleUnitTest.kt b/favorite/src/test/java/com/indramahkota/favorite/ExampleUnitTest.kt
+rename from dynamic_feature/src/test/java/com/indramahkota/dynamic_feature/ExampleUnitTest.kt
+rename to favorite/src/test/java/com/indramahkota/favorite/ExampleUnitTest.kt
+--- a/dynamic_feature/src/test/java/com/indramahkota/dynamic_feature/ExampleUnitTest.kt	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/favorite/src/test/java/com/indramahkota/favorite/ExampleUnitTest.kt	(date 1641879274778)
+@@ -1,4 +1,4 @@
+-package com.indramahkota.dynamic_feature
++package com.indramahkota.favorite
+ 
+ import org.junit.Test
+ 
+Index: dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/DynamicFeatureFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/DynamicFeatureFragment.kt b/favorite/src/main/java/com/indramahkota/favorite/FavoriteFragment.kt
+rename from dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/DynamicFeatureFragment.kt
+rename to favorite/src/main/java/com/indramahkota/favorite/FavoriteFragment.kt
+--- a/dynamic_feature/src/main/java/com/indramahkota/dynamic_feature/DynamicFeatureFragment.kt	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/favorite/src/main/java/com/indramahkota/favorite/FavoriteFragment.kt	(date 1641882889281)
+@@ -1,28 +1,28 @@
+-package com.indramahkota.dynamic_feature
++package com.indramahkota.favorite
+ 
+ import android.content.Context
+ import android.os.Bundle
+-import android.util.Log
+ import android.view.LayoutInflater
+ import android.view.View
+ import android.view.ViewGroup
+ import androidx.lifecycle.ViewModelProvider
+ import com.indramahkota.common.base.BaseBindingFragment
+-import com.indramahkota.domain.SampleRepository
+-import com.indramahkota.dynamic_feature.databinding.FragmentDynamicFeatureBinding
++import com.indramahkota.domain.usecase.MovieAppUseCase
++import com.indramahkota.favorite.databinding.FragmentFavoriteBinding
++import timber.log.Timber
+ import javax.inject.Inject
+ 
+-class DynamicFeatureFragment : BaseBindingFragment() {
+-    private var _binding: FragmentDynamicFeatureBinding? = null
++class FavoriteFragment : BaseBindingFragment() {
++    private var _binding: FragmentFavoriteBinding? = null
+     private val binding get() = _binding!!
+ 
+     @Inject
+-    lateinit var repository: SampleRepository
++    lateinit var useCase: MovieAppUseCase
+ 
+     @Inject
+     lateinit var viewModelFactory: ViewModelProvider.Factory
+-    private val viewModel: DynamicFeatureViewModel by lazy {
+-        ViewModelProvider(this, viewModelFactory)[DynamicFeatureViewModel::class.java]
++    private val viewModel: FavoriteViewModel by lazy {
++        ViewModelProvider(this, viewModelFactory)[FavoriteViewModel::class.java]
+     }
+ 
+     override fun onAttach(context: Context) {
+@@ -31,16 +31,13 @@
+     }
+ 
+     override fun bindFragment(inflater: LayoutInflater, container: ViewGroup?): View {
+-        _binding = FragmentDynamicFeatureBinding.inflate(inflater, container, false)
++        _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
+         return binding.root
+     }
+ 
+     override fun setupUI(view: View, savedInstanceState: Bundle?) {
+-        Log.d("LOGGING", "Dynamic Feature by Direct Inject: ${repository.getMessage()}")
+-        Log.d(
+-            "LOGGING",
+-            "Dynamic Feature by ViewModel Inject: ${viewModel.getMessage()}"
+-        )
++        Timber.d("Dynamic Feature by Direct Inject: $useCase")
++        Timber.d("Dynamic Feature by ViewModel Inject")
+     }
+ 
+     override fun unbindFragment() {
+Index: favorite/src/main/java/com/indramahkota/favorite/FavoriteFragmentExtension.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/favorite/src/main/java/com/indramahkota/favorite/FavoriteFragmentExtension.kt b/favorite/src/main/java/com/indramahkota/favorite/FavoriteFragmentExtension.kt
+new file mode 100644
+--- /dev/null	(date 1641880920880)
++++ b/favorite/src/main/java/com/indramahkota/favorite/FavoriteFragmentExtension.kt	(date 1641880920880)
+@@ -0,0 +1,15 @@
++package com.indramahkota.favorite
++
++import com.indramahkota.favorite.di.DaggerFavoriteComponent
++import com.indramahkota.hiltexample.di.FavoriteDependencies
++import dagger.hilt.android.EntryPointAccessors
++
++internal fun FavoriteFragment.inject() {
++    DaggerFavoriteComponent.factory().create(
++        requireContext(),
++        EntryPointAccessors.fromApplication(
++            requireContext().applicationContext,
++            FavoriteDependencies::class.java
++        )
++    ).inject(this)
++}
+\ No newline at end of file
+Index: app/src/main/java/com/indramahkota/hiltexample/presentation/HomeFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.indramahkota.hiltexample.presentation\r\n\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport com.indramahkota.common.base.BaseBindingFragment\r\nimport com.indramahkota.domain.SampleRepository\r\nimport com.indramahkota.hiltexample.databinding.FragmentHomeBinding\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport javax.inject.Inject\r\n\r\n@AndroidEntryPoint\r\nclass HomeFragment : BaseBindingFragment() {\r\n    private var _binding: FragmentHomeBinding? = null\r\n    private val binding get() = _binding!!\r\n\r\n    @Inject\r\n    lateinit var repository: SampleRepository\r\n\r\n    override fun bindFragment(inflater: LayoutInflater, container: ViewGroup?): View {\r\n        _binding = FragmentHomeBinding.inflate(inflater, container, false)\r\n        return binding.root\r\n    }\r\n\r\n    override fun setupUI(view: View, savedInstanceState: Bundle?) {\r\n        Log.d(\"LOGGING\", \"Home: ${repository.getMessage()}\")\r\n    }\r\n\r\n    override fun unbindFragment() {\r\n        _binding = null\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/indramahkota/hiltexample/presentation/HomeFragment.kt b/app/src/main/java/com/indramahkota/hiltexample/presentation/HomeFragment.kt
+--- a/app/src/main/java/com/indramahkota/hiltexample/presentation/HomeFragment.kt	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/app/src/main/java/com/indramahkota/hiltexample/presentation/HomeFragment.kt	(date 1641881500766)
+@@ -1,7 +1,6 @@
+ package com.indramahkota.hiltexample.presentation
+ 
+ import android.os.Bundle
+-import android.util.Log
+ import android.view.LayoutInflater
+ import android.view.View
+ import android.view.ViewGroup
+@@ -9,6 +8,7 @@
+ import com.indramahkota.domain.SampleRepository
+ import com.indramahkota.hiltexample.databinding.FragmentHomeBinding
+ import dagger.hilt.android.AndroidEntryPoint
++import timber.log.Timber
+ import javax.inject.Inject
+ 
+ @AndroidEntryPoint
+@@ -25,7 +25,7 @@
+     }
+ 
+     override fun setupUI(view: View, savedInstanceState: Bundle?) {
+-        Log.d("LOGGING", "Home: ${repository.getMessage()}")
++        Timber.d("Home: " + repository.getMessage())
+     }
+ 
+     override fun unbindFragment() {
+Index: common/src/main/java/com/indramahkota/common/utils/Constant.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/src/main/java/com/indramahkota/common/utils/Constant.kt b/common/src/main/java/com/indramahkota/common/utils/Constant.kt
+new file mode 100644
+--- /dev/null	(date 1641877617719)
++++ b/common/src/main/java/com/indramahkota/common/utils/Constant.kt	(date 1641877617719)
+@@ -0,0 +1,25 @@
++package com.indramahkota.common.utils
++
++object Constant {
++    /** Constant **/
++    const val DB_NAME = "moveous.db"
++    const val BASE_URL = "https://api.themoviedb.org/3/discover/"
++    // ref: https://www.themoviedb.org/talk/53c11d4ec3a3684cf4006400
++    const val BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w342"
++
++    /** Response Code **/
++    const val NO_CONTENT = 204
++
++    /** Recycle View Type **/
++    const val TYPE_NORMAL = -1
++    const val TYPE_LOADING = 0
++    const val TYPE_EMPTY = 1
++
++    /** Error Message **/
++    const val UNKNOWN_ERROR = "Unknown error"
++    const val DATE_PARSE_ERROR = "Date Parse Error"
++    const val NO_INTERNET_ERROR = "No internet connection"
++
++    /** **/
++    const val LOREM_IPSUM = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
++}
+\ No newline at end of file
+Index: app/src/main/java/com/indramahkota/hiltexample/di/DynamicFeatureDependencies.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/indramahkota/hiltexample/di/DynamicFeatureDependencies.kt b/app/src/main/java/com/indramahkota/hiltexample/di/FavoriteDependencies.kt
+rename from app/src/main/java/com/indramahkota/hiltexample/di/DynamicFeatureDependencies.kt
+rename to app/src/main/java/com/indramahkota/hiltexample/di/FavoriteDependencies.kt
+--- a/app/src/main/java/com/indramahkota/hiltexample/di/DynamicFeatureDependencies.kt	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/app/src/main/java/com/indramahkota/hiltexample/di/FavoriteDependencies.kt	(date 1641881832570)
+@@ -1,12 +1,12 @@
+ package com.indramahkota.hiltexample.di
+ 
+-import com.indramahkota.domain.SampleRepository
++import com.indramahkota.domain.usecase.MovieAppUseCase
+ import dagger.hilt.EntryPoint
+ import dagger.hilt.InstallIn
+ import dagger.hilt.components.SingletonComponent
+ 
+ @EntryPoint
+ @InstallIn(SingletonComponent::class)
+-interface DynamicFeatureDependencies {
+-    fun sampleRepository(): SampleRepository
++interface FavoriteDependencies {
++    fun useCase(): MovieAppUseCase
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/indramahkota/hiltexample/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.indramahkota.hiltexample\r\n\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport android.view.View\r\nimport androidx.navigation.NavController\r\nimport androidx.navigation.fragment.NavHostFragment\r\nimport com.indramahkota.common.base.BaseBindingActivity\r\nimport com.indramahkota.domain.SampleRepository\r\nimport com.indramahkota.hiltexample.databinding.ActivityMainBinding\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport javax.inject.Inject\r\n\r\n@AndroidEntryPoint\r\nclass MainActivity : BaseBindingActivity() {\r\n    private lateinit var binding: ActivityMainBinding\r\n\r\n    @Inject\r\n    lateinit var repository: SampleRepository\r\n\r\n    private lateinit var navController: NavController\r\n\r\n    override fun setLayout(): View {\r\n        binding = ActivityMainBinding.inflate(layoutInflater)\r\n        return binding.root\r\n    }\r\n\r\n    override fun setupUI(savedInstanceState: Bundle?) {\r\n        Log.d(\"LOGGING\", \"Main: ${repository.getMessage()}\")\r\n\r\n        with(binding) {\r\n            val navHostFragment = supportFragmentManager.findFragmentById(\r\n                navHostContainer.id\r\n            ) as NavHostFragment\r\n\r\n            navController = navHostFragment.navController\r\n\r\n            btnAppFeature.setOnClickListener {\r\n                navController.navigate(R.id.homeFragment)\r\n            }\r\n\r\n            btnRegularFeature.setOnClickListener {\r\n                navController.navigate(R.id.regularFeatureFragment)\r\n            }\r\n\r\n            btnDynamicFeature.setOnClickListener {\r\n                navController.navigate(R.id.dynamicFeatureFragment)\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/indramahkota/hiltexample/MainActivity.kt b/app/src/main/java/com/indramahkota/hiltexample/MainActivity.kt
+--- a/app/src/main/java/com/indramahkota/hiltexample/MainActivity.kt	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/app/src/main/java/com/indramahkota/hiltexample/MainActivity.kt	(date 1641882631992)
+@@ -1,7 +1,6 @@
+ package com.indramahkota.hiltexample
+ 
+ import android.os.Bundle
+-import android.util.Log
+ import android.view.View
+ import androidx.navigation.NavController
+ import androidx.navigation.fragment.NavHostFragment
+@@ -9,6 +8,7 @@
+ import com.indramahkota.domain.SampleRepository
+ import com.indramahkota.hiltexample.databinding.ActivityMainBinding
+ import dagger.hilt.android.AndroidEntryPoint
++import timber.log.Timber
+ import javax.inject.Inject
+ 
+ @AndroidEntryPoint
+@@ -26,7 +26,7 @@
+     }
+ 
+     override fun setupUI(savedInstanceState: Bundle?) {
+-        Log.d("LOGGING", "Main: ${repository.getMessage()}")
++        Timber.d("Main: " + repository.getMessage())
+ 
+         with(binding) {
+             val navHostFragment = supportFragmentManager.findFragmentById(
+@@ -39,10 +39,6 @@
+                 navController.navigate(R.id.homeFragment)
+             }
+ 
+-            btnRegularFeature.setOnClickListener {
+-                navController.navigate(R.id.regularFeatureFragment)
+-            }
+-
+             btnDynamicFeature.setOnClickListener {
+                 navController.navigate(R.id.dynamicFeatureFragment)
+             }
+Index: dynamic_feature/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/dynamic_feature/src/main/res/values/strings.xml b/favorite/src/main/res/values/strings.xml
+rename from dynamic_feature/src/main/res/values/strings.xml
+rename to favorite/src/main/res/values/strings.xml
+--- a/dynamic_feature/src/main/res/values/strings.xml	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/favorite/src/main/res/values/strings.xml	(date 1641879331929)
+@@ -1,4 +1,4 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="dynamic_dynamic_feature">Dynamic Feature</string>
++    <string name="favorite_favorite_title">Favorite</string>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/java/com/indramahkota/hiltexample/BaseHiltApp.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.indramahkota.hiltexample\r\n\r\nimport android.app.Application\r\nimport dagger.hilt.android.HiltAndroidApp\r\n\r\n@HiltAndroidApp\r\nclass BaseHiltApp : Application()
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/indramahkota/hiltexample/BaseHiltApp.kt b/app/src/main/java/com/indramahkota/hiltexample/BaseHiltApp.kt
+--- a/app/src/main/java/com/indramahkota/hiltexample/BaseHiltApp.kt	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/app/src/main/java/com/indramahkota/hiltexample/BaseHiltApp.kt	(date 1641882713538)
+@@ -2,6 +2,12 @@
+ 
+ import android.app.Application
+ import dagger.hilt.android.HiltAndroidApp
++import timber.log.Timber
+ 
+ @HiltAndroidApp
+-class BaseHiltApp : Application()
+\ No newline at end of file
++class BaseHiltApp : Application() {
++    override fun onCreate() {
++        super.onCreate()
++        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
++    }
++}
+\ No newline at end of file
+Index: regular_feature/src/main/res/layout/fragment_regular_feature.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/regular_feature/src/main/res/layout/fragment_regular_feature.xml b/favorite/src/main/res/layout/fragment_favorite.xml
+rename from regular_feature/src/main/res/layout/fragment_regular_feature.xml
+rename to favorite/src/main/res/layout/fragment_favorite.xml
+--- a/regular_feature/src/main/res/layout/fragment_regular_feature.xml	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/favorite/src/main/res/layout/fragment_favorite.xml	(date 1641879331940)
+@@ -7,6 +7,6 @@
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:gravity="center"
+-        android:text="@string/regular_regular_feature" />
++        android:text="@string/favorite_favorite_title" />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: data/src/main/java/com/indramahkota/data/source/remote/interceptor/HeaderInterceptor.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/source/remote/interceptor/HeaderInterceptor.kt b/data/src/main/java/com/indramahkota/data/source/remote/interceptor/HeaderInterceptor.kt
+new file mode 100644
+--- /dev/null	(date 1641878934162)
++++ b/data/src/main/java/com/indramahkota/data/source/remote/interceptor/HeaderInterceptor.kt	(date 1641878934162)
+@@ -0,0 +1,16 @@
++package com.indramahkota.data.source.remote.interceptor
++
++import okhttp3.Interceptor
++import okhttp3.Response
++import java.io.IOException
++
++class HeaderInterceptor : Interceptor {
++    @Throws(IOException::class)
++    override fun intercept(chain: Interceptor.Chain): Response {
++        val newRequest = chain.request().newBuilder()
++            .addHeader("Connection", "close")
++            .addHeader("Accept", "application/json")
++            .build()
++        return chain.proceed(newRequest)
++    }
++}
+\ No newline at end of file
+Index: data/src/main/java/com/indramahkota/data/source/remote/interceptor/ConnectivityInterceptor.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/source/remote/interceptor/ConnectivityInterceptor.kt b/data/src/main/java/com/indramahkota/data/source/remote/interceptor/ConnectivityInterceptor.kt
+new file mode 100644
+--- /dev/null	(date 1641878923425)
++++ b/data/src/main/java/com/indramahkota/data/source/remote/interceptor/ConnectivityInterceptor.kt	(date 1641878923425)
+@@ -0,0 +1,40 @@
++package com.indramahkota.data.source.remote.interceptor
++
++import android.annotation.SuppressLint
++import android.content.Context
++import android.net.ConnectivityManager
++import android.net.NetworkCapabilities
++import com.indramahkota.common.utils.Constant.NO_INTERNET_ERROR
++import okhttp3.Interceptor
++import okhttp3.Response
++import java.io.IOException
++
++class ConnectivityInterceptor(private val context: Context) : Interceptor {
++    @Throws(IOException::class)
++    override fun intercept(chain: Interceptor.Chain): Response {
++        if (!isOnline) throw IOException(NO_INTERNET_ERROR)
++        return chain.proceed(chain.request())
++    }
++
++    private val isOnline: Boolean
++        /**
++         * Must have ACCESS_NETWORK_STATE permission
++         * **/
++        @SuppressLint("MissingPermission")
++        get() {
++            var result = false
++            val connectivityManager =
++                context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
++            val capabilities = connectivityManager.getNetworkCapabilities(
++                connectivityManager.activeNetwork
++            )
++            when {
++                capabilities != null && (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
++                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
++                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN)) -> {
++                    result = true
++                }
++            }
++            return result
++        }
++}
+\ No newline at end of file
+Index: data/src/main/java/com/indramahkota/data/source/remote/interceptor/ApiKeyInterceptor.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/source/remote/interceptor/ApiKeyInterceptor.kt b/data/src/main/java/com/indramahkota/data/source/remote/interceptor/ApiKeyInterceptor.kt
+new file mode 100644
+--- /dev/null	(date 1641878397974)
++++ b/data/src/main/java/com/indramahkota/data/source/remote/interceptor/ApiKeyInterceptor.kt	(date 1641878397974)
+@@ -0,0 +1,17 @@
++package com.indramahkota.data.source.remote.interceptor
++
++import okhttp3.Interceptor
++import okhttp3.Response
++import java.io.IOException
++
++class ApiKeyInterceptor : Interceptor {
++    @Throws(IOException::class)
++    override fun intercept(chain: Interceptor.Chain): Response {
++        val original = chain.request()
++        val newRequest = original.newBuilder()
++            .url(original.url.newBuilder().apply {
++                addQueryParameter("api_key", "0baf2c567988149d686a1289304f46cb")
++            }.build()).build()
++        return chain.proceed(newRequest)
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/indramahkota/hiltexample/di/RepositoryModule.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/indramahkota/hiltexample/di/RepositoryModule.kt b/app/src/main/java/com/indramahkota/hiltexample/di/RepositoryModule.kt
+new file mode 100644
+--- /dev/null	(date 1641882456257)
++++ b/app/src/main/java/com/indramahkota/hiltexample/di/RepositoryModule.kt	(date 1641882456257)
+@@ -0,0 +1,28 @@
++package com.indramahkota.hiltexample.di
++
++import com.indramahkota.data.MovieAppRepositoryImpl
++import com.indramahkota.data.source.local.LocalDataSource
++import com.indramahkota.data.source.remote.RemoteDataSource
++import com.indramahkota.data.utils.AppExecutors
++import com.indramahkota.domain.repository.IMovieAppRepository
++import dagger.Module
++import dagger.Provides
++import dagger.hilt.InstallIn
++import dagger.hilt.components.SingletonComponent
++import javax.inject.Singleton
++
++@Module
++@InstallIn(SingletonComponent::class)
++object RepositoryModule {
++    @Provides
++    @Singleton
++    fun provideRepository(
++        remoteDataSource: RemoteDataSource,
++        localDataSource: LocalDataSource,
++        appExecutors: AppExecutors
++    ): IMovieAppRepository = MovieAppRepositoryImpl(
++        remoteDataSource,
++        localDataSource,
++        appExecutors
++    )
++}
+\ No newline at end of file
+Index: data/src/main/java/com/indramahkota/data/source/remote/response/MovieResponse.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/source/remote/response/MovieResponse.kt b/data/src/main/java/com/indramahkota/data/source/remote/response/MovieResponse.kt
+new file mode 100644
+--- /dev/null	(date 1641878413381)
++++ b/data/src/main/java/com/indramahkota/data/source/remote/response/MovieResponse.kt	(date 1641878413381)
+@@ -0,0 +1,43 @@
++package com.indramahkota.data.source.remote.response
++
++import com.google.gson.annotations.SerializedName
++
++data class MovieResponse(
++    @SerializedName("results")
++    val results: List<MovieDto>
++)
++
++data class MovieDto(
++    @SerializedName("overview")
++    val overview: String,
++
++    @SerializedName("original_language")
++    val originalLanguage: String,
++
++    @SerializedName("release_date")
++    val releaseDate: String?,
++
++    @SerializedName("popularity")
++    val popularity: Double,
++
++    @SerializedName("vote_average")
++    val voteAverage: Double,
++
++    @SerializedName("id")
++    val id: Int,
++
++    @SerializedName("title")
++    val title: String?,
++
++    @SerializedName("vote_count")
++    val voteCount: Int,
++
++    @SerializedName("poster_path")
++    val posterPath: String,
++
++    @SerializedName("first_air_date")
++    val firstAirDate: String?,
++
++    @SerializedName("name")
++    val name: String?
++)
+Index: data/src/main/java/com/indramahkota/data/source/remote/network/ApiService.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/source/remote/network/ApiService.kt b/data/src/main/java/com/indramahkota/data/source/remote/network/ApiService.kt
+new file mode 100644
+--- /dev/null	(date 1641878413392)
++++ b/data/src/main/java/com/indramahkota/data/source/remote/network/ApiService.kt	(date 1641878413392)
+@@ -0,0 +1,13 @@
++package com.indramahkota.data.source.remote.network
++
++import com.indramahkota.data.source.remote.response.MovieResponse
++import retrofit2.Response
++import retrofit2.http.GET
++
++interface ApiService {
++    @GET("movie")
++    suspend fun getMovies(): Response<MovieResponse>
++
++    @GET("tv")
++    suspend fun getTvShows(): Response<MovieResponse>
++}
+\ No newline at end of file
+Index: data/src/main/java/com/indramahkota/data/source/remote/network/ApiResponse.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/source/remote/network/ApiResponse.kt b/data/src/main/java/com/indramahkota/data/source/remote/network/ApiResponse.kt
+new file mode 100644
+--- /dev/null	(date 1641878880406)
++++ b/data/src/main/java/com/indramahkota/data/source/remote/network/ApiResponse.kt	(date 1641878880406)
+@@ -0,0 +1,46 @@
++package com.indramahkota.data.source.remote.network
++
++import com.indramahkota.common.utils.Constant.NO_CONTENT
++import com.indramahkota.common.utils.Constant.UNKNOWN_ERROR
++import org.json.JSONException
++import org.json.JSONObject
++import retrofit2.Response
++
++//Specific The Movie Database API V3 message property
++const val THE_MOVIE_DB_V3_ERROR_MESSAGE_PROP = "status_message"
++
++sealed class ApiResponse<T> {
++    companion object {
++        fun <T> create(error: Throwable): ApiErrorResponse<T> {
++            return ApiErrorResponse(error.message ?: UNKNOWN_ERROR)
++        }
++
++        fun <T> create(response: Response<T>): ApiResponse<T> {
++            return if (response.isSuccessful) {
++                val body = response.body()
++                if (body == null || response.code() == NO_CONTENT) {
++                    ApiEmptyResponse()
++                } else ApiSuccessResponse(body)
++            } else {
++                val msg = response.errorBody()?.string()
++                val errorMessage = if (msg.isNullOrEmpty())
++                    response.message()
++                else {
++                    try {
++                        val message = JSONObject(msg)
++                        message.getString(THE_MOVIE_DB_V3_ERROR_MESSAGE_PROP)
++                    } catch (ex: JSONException) {
++                        ex.message
++                    }
++                }
++                ApiErrorResponse(errorMessage ?: UNKNOWN_ERROR)
++            }
++        }
++    }
++}
++
++class ApiEmptyResponse<T> : ApiResponse<T>()
++
++data class ApiSuccessResponse<T>(val body: T) : ApiResponse<T>()
++
++data class ApiErrorResponse<T>(val errorMessage: String) : ApiResponse<T>()
+\ No newline at end of file
+Index: data/src/main/java/com/indramahkota/data/source/local/entity/MovieEntity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/source/local/entity/MovieEntity.kt b/data/src/main/java/com/indramahkota/data/source/local/entity/MovieEntity.kt
+new file mode 100644
+--- /dev/null	(date 1641878373086)
++++ b/data/src/main/java/com/indramahkota/data/source/local/entity/MovieEntity.kt	(date 1641878373086)
+@@ -0,0 +1,44 @@
++package com.indramahkota.data.source.local.entity
++
++import androidx.annotation.NonNull
++import androidx.room.ColumnInfo
++import androidx.room.Entity
++import androidx.room.PrimaryKey
++
++@Entity(tableName = "movie")
++data class MovieEntity(
++    @PrimaryKey
++    @NonNull
++    @ColumnInfo(name = "id")
++    var id: Int,
++
++    @ColumnInfo(name = "title")
++    var title: String,
++
++    @ColumnInfo(name = "vote_count")
++    var voteCount: Int,
++
++    @ColumnInfo(name = "poster_path")
++    var posterPath: String,
++
++    @ColumnInfo(name = "overview")
++    var overview: String,
++
++    @ColumnInfo(name = "original_language")
++    var originalLanguage: String,
++
++    @ColumnInfo(name = "release_date")
++    var releaseDate: String,
++
++    @ColumnInfo(name = "popularity")
++    var popularity: Double,
++
++    @ColumnInfo(name = "vote_average")
++    var voteAverage: Double,
++
++    @ColumnInfo(name = "favorite")
++    var favorite: Boolean = false,
++
++    @ColumnInfo(name = "is_tv")
++    var isTvShows: Boolean = false
++)
+Index: data/src/main/java/com/indramahkota/data/source/local/LocalDataSource.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/source/local/LocalDataSource.kt b/data/src/main/java/com/indramahkota/data/source/local/LocalDataSource.kt
+new file mode 100644
+--- /dev/null	(date 1641878734684)
++++ b/data/src/main/java/com/indramahkota/data/source/local/LocalDataSource.kt	(date 1641878734684)
+@@ -0,0 +1,40 @@
++package com.indramahkota.data.source.local
++
++import com.indramahkota.data.source.local.entity.MovieEntity
++import com.indramahkota.data.source.local.room.MovieDao
++import com.indramahkota.data.utils.SortUtils
++import kotlinx.coroutines.flow.Flow
++import javax.inject.Inject
++import javax.inject.Singleton
++
++@Singleton
++class LocalDataSource @Inject constructor(
++    private val mMovieDao: MovieDao
++) {
++    fun getAllMovies(sort: String): Flow<List<MovieEntity>> {
++        val query = SortUtils.getSortedQueryMovies(sort)
++        return mMovieDao.getMovies(query)
++    }
++
++    fun getAllTvShows(sort: String): Flow<List<MovieEntity>> {
++        val query = SortUtils.getSortedQueryTvShows(sort)
++        return mMovieDao.getTvShows(query)
++    }
++
++    fun getAllFavoriteMovies(sort: String): Flow<List<MovieEntity>> {
++        val query = SortUtils.getSortedQueryFavoriteMovies(sort)
++        return mMovieDao.getFavoriteMovies(query)
++    }
++
++    fun getAllFavoriteTvShows(sort: String): Flow<List<MovieEntity>> {
++        val query = SortUtils.getSortedQueryFavoriteTvShows(sort)
++        return mMovieDao.getFavoriteTvShows(query)
++    }
++
++    suspend fun insertMovies(movies: List<MovieEntity>) = mMovieDao.insertMovie(movies)
++
++    fun setMovieFavorite(movie: MovieEntity, favorite: Boolean) {
++        movie.favorite = favorite
++        mMovieDao.updateFavoriteMovie(movie)
++    }
++}
+\ No newline at end of file
+Index: data/src/main/java/com/indramahkota/data/source/local/room/MovieDatabase.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/source/local/room/MovieDatabase.kt b/data/src/main/java/com/indramahkota/data/source/local/room/MovieDatabase.kt
+new file mode 100644
+--- /dev/null	(date 1641878383381)
++++ b/data/src/main/java/com/indramahkota/data/source/local/room/MovieDatabase.kt	(date 1641878383381)
+@@ -0,0 +1,36 @@
++package com.indramahkota.data.source.local.room
++
++import android.content.Context
++import androidx.room.Database
++import androidx.room.Room
++import androidx.room.RoomDatabase
++import com.indramahkota.data.source.local.entity.MovieEntity
++
++@Database(
++    entities = [
++        MovieEntity::class
++    ],
++    version = 1,
++    exportSchema = false
++)
++abstract class MovieDatabase : RoomDatabase() {
++    abstract fun movieDao(): MovieDao
++
++    companion object {
++        @Volatile
++        private var instance: MovieDatabase? = null
++        private val LOCK = Any()
++
++        operator fun invoke(context: Context, name: String) = instance ?: synchronized(LOCK) {
++            instance ?: buildDatabase(context, name).also { instance = it }
++        }
++
++        private fun buildDatabase(context: Context, name: String) = Room.databaseBuilder(
++            context,
++            MovieDatabase::class.java,
++            name
++        )
++            .fallbackToDestructiveMigrationFrom(1)
++            .build()
++    }
++}
+\ No newline at end of file
+Index: data/src/main/java/com/indramahkota/data/source/local/room/MovieDao.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/source/local/room/MovieDao.kt b/data/src/main/java/com/indramahkota/data/source/local/room/MovieDao.kt
+new file mode 100644
+--- /dev/null	(date 1641878378495)
++++ b/data/src/main/java/com/indramahkota/data/source/local/room/MovieDao.kt	(date 1641878378495)
+@@ -0,0 +1,27 @@
++package com.indramahkota.data.source.local.room
++
++import androidx.room.*
++import androidx.sqlite.db.SupportSQLiteQuery
++import com.indramahkota.data.source.local.entity.MovieEntity
++import kotlinx.coroutines.flow.Flow
++
++@Dao
++interface MovieDao {
++    @RawQuery(observedEntities = [MovieEntity::class])
++    fun getMovies(query: SupportSQLiteQuery): Flow<List<MovieEntity>>
++
++    @RawQuery(observedEntities = [MovieEntity::class])
++    fun getTvShows(query: SupportSQLiteQuery): Flow<List<MovieEntity>>
++
++    @RawQuery(observedEntities = [MovieEntity::class])
++    fun getFavoriteMovies(query: SupportSQLiteQuery): Flow<List<MovieEntity>>
++
++    @RawQuery(observedEntities = [MovieEntity::class])
++    fun getFavoriteTvShows(query: SupportSQLiteQuery): Flow<List<MovieEntity>>
++
++    @Insert(onConflict = OnConflictStrategy.REPLACE)
++    suspend fun insertMovie(movies: List<MovieEntity>)
++
++    @Update
++    fun updateFavoriteMovie(movie: MovieEntity)
++}
+\ No newline at end of file
+Index: app/src/main/res/navigation/nav_graph.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<navigation xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/nav_graph.xml\"\r\n    app:startDestination=\"@id/homeFragment\">\r\n\r\n    <fragment\r\n        android:id=\"@+id/homeFragment\"\r\n        android:name=\"com.indramahkota.hiltexample.presentation.HomeFragment\"\r\n        android:label=\"HomeFragment\"\r\n        tools:layout=\"@layout/fragment_home\" />\r\n\r\n    <fragment\r\n        android:id=\"@+id/regularFeatureFragment\"\r\n        android:name=\"com.indramahkota.regular_feature.RegularFeatureFragment\"\r\n        android:label=\"RegularFeatureFragment\"\r\n        tools:layout=\"@layout/fragment_regular_feature\" />\r\n\r\n    <!-- Mitigasi kenapa jika moduleName diberikan dynamic feature tidak bekerja  -->\r\n    <!-- app:moduleName=\"Hilt_Example.dynamic_feature\"\r\n        tools:layout=\"@layout/fragment_dynamic_feature\" -->\r\n    <fragment\r\n        android:id=\"@+id/dynamicFeatureFragment\"\r\n        android:name=\"com.indramahkota.dynamic_feature.DynamicFeatureFragment\"\r\n        android:label=\"DynamicFeatureFragment\" />\r\n\r\n</navigation>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/navigation/nav_graph.xml b/app/src/main/res/navigation/nav_graph.xml
+--- a/app/src/main/res/navigation/nav_graph.xml	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/app/src/main/res/navigation/nav_graph.xml	(date 1641882615807)
+@@ -11,18 +11,12 @@
+         android:label="HomeFragment"
+         tools:layout="@layout/fragment_home" />
+ 
+-    <fragment
+-        android:id="@+id/regularFeatureFragment"
+-        android:name="com.indramahkota.regular_feature.RegularFeatureFragment"
+-        android:label="RegularFeatureFragment"
+-        tools:layout="@layout/fragment_regular_feature" />
+-
+     <!-- Mitigasi kenapa jika moduleName diberikan dynamic feature tidak bekerja  -->
+     <!-- app:moduleName="Hilt_Example.dynamic_feature"
+         tools:layout="@layout/fragment_dynamic_feature" -->
+     <fragment
+         android:id="@+id/dynamicFeatureFragment"
+-        android:name="com.indramahkota.dynamic_feature.DynamicFeatureFragment"
++        android:name="com.indramahkota.favorite.FavoriteFragment"
+         android:label="DynamicFeatureFragment" />
+ 
+ </navigation>
+\ No newline at end of file
+Index: domain/src/main/java/com/indramahkota/domain/usecase/MovieAppUseCase.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/domain/src/main/java/com/indramahkota/domain/usecase/MovieAppUseCase.kt b/domain/src/main/java/com/indramahkota/domain/usecase/MovieAppUseCase.kt
+new file mode 100644
+--- /dev/null	(date 1641880494125)
++++ b/domain/src/main/java/com/indramahkota/domain/usecase/MovieAppUseCase.kt	(date 1641880494125)
+@@ -0,0 +1,17 @@
++package com.indramahkota.domain.usecase
++
++import com.indramahkota.domain.model.Movie
++import com.indramahkota.domain.utils.Resource
++import kotlinx.coroutines.flow.Flow
++
++interface MovieAppUseCase {
++    fun getAllMovies(sort: String): Flow<Resource<List<Movie>>>
++
++    fun getAllTvShows(sort: String): Flow<Resource<List<Movie>>>
++
++    fun getFavoriteMovies(sort: String): Flow<List<Movie>>
++
++    fun getFavoriteTvShows(sort: String): Flow<List<Movie>>
++
++    fun setMovieFavorite(movie: Movie, state: Boolean)
++}
+\ No newline at end of file
+Index: domain/src/main/java/com/indramahkota/domain/usecase/MovieAppUseCaseImpl.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/domain/src/main/java/com/indramahkota/domain/usecase/MovieAppUseCaseImpl.kt b/domain/src/main/java/com/indramahkota/domain/usecase/MovieAppUseCaseImpl.kt
+new file mode 100644
+--- /dev/null	(date 1641881998467)
++++ b/domain/src/main/java/com/indramahkota/domain/usecase/MovieAppUseCaseImpl.kt	(date 1641881998467)
+@@ -0,0 +1,26 @@
++package com.indramahkota.domain.usecase
++
++import com.indramahkota.domain.model.Movie
++import com.indramahkota.domain.repository.IMovieAppRepository
++import com.indramahkota.domain.utils.Resource
++import kotlinx.coroutines.flow.Flow
++import javax.inject.Inject
++
++class MovieAppUseCaseImpl @Inject constructor(
++    private val iMovieAppRepository: IMovieAppRepository
++) : MovieAppUseCase {
++    override fun getAllMovies(sort: String): Flow<Resource<List<Movie>>> =
++        iMovieAppRepository.getAllMovies(sort)
++
++    override fun getAllTvShows(sort: String): Flow<Resource<List<Movie>>> =
++        iMovieAppRepository.getAllTvShows(sort)
++
++    override fun getFavoriteMovies(sort: String): Flow<List<Movie>> =
++        iMovieAppRepository.getFavoriteMovies(sort)
++
++    override fun getFavoriteTvShows(sort: String): Flow<List<Movie>> =
++        iMovieAppRepository.getFavoriteTvShows(sort)
++
++    override fun setMovieFavorite(movie: Movie, state: Boolean) =
++        iMovieAppRepository.setMovieFavorite(movie, state)
++}
+\ No newline at end of file
+Index: domain/src/main/java/com/indramahkota/domain/repository/IMovieAppRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/domain/src/main/java/com/indramahkota/domain/repository/IMovieAppRepository.kt b/domain/src/main/java/com/indramahkota/domain/repository/IMovieAppRepository.kt
+new file mode 100644
+--- /dev/null	(date 1641880475955)
++++ b/domain/src/main/java/com/indramahkota/domain/repository/IMovieAppRepository.kt	(date 1641880475955)
+@@ -0,0 +1,17 @@
++package com.indramahkota.domain.repository
++
++import com.indramahkota.domain.model.Movie
++import com.indramahkota.domain.utils.Resource
++import kotlinx.coroutines.flow.Flow
++
++interface IMovieAppRepository {
++    fun getAllMovies(sort: String): Flow<Resource<List<Movie>>>
++
++    fun getAllTvShows(sort: String): Flow<Resource<List<Movie>>>
++
++    fun getFavoriteMovies(sort: String): Flow<List<Movie>>
++
++    fun getFavoriteTvShows(sort: String): Flow<List<Movie>>
++
++    fun setMovieFavorite(movie: Movie, favorite: Boolean)
++}
+\ No newline at end of file
+Index: domain/src/main/java/com/indramahkota/domain/model/Movie.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/domain/src/main/java/com/indramahkota/domain/model/Movie.kt b/domain/src/main/java/com/indramahkota/domain/model/Movie.kt
+new file mode 100644
+--- /dev/null	(date 1641878296454)
++++ b/domain/src/main/java/com/indramahkota/domain/model/Movie.kt	(date 1641878296454)
+@@ -0,0 +1,23 @@
++package com.indramahkota.domain.model
++
++import android.os.Parcelable
++import com.indramahkota.common.base.BaseModel
++import com.indramahkota.common.utils.Constant
++import kotlinx.parcelize.Parcelize
++
++@Parcelize
++data class Movie(
++    var id: Int,
++    var title: String,
++    var voteCount: Int,
++    var posterPath: String,
++    var overview: String,
++    var originalLanguage: String,
++    var releaseDate: String,
++    var popularity: Double,
++    var voteAverage: Double,
++    var favorite: Boolean = false,
++    var isTvShows: Boolean = false
++) : Parcelable, BaseModel {
++    override fun getType() = Constant.TYPE_NORMAL
++}
+\ No newline at end of file
+Index: domain/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.library'\r\n    id 'kotlin-android'\r\n}\r\n\r\nandroid {\r\n    compileSdk project.ext.compileSdk\r\n\r\n    defaultConfig {\r\n        minSdk project.ext.minSdk\r\n        targetSdk project.ext.targetSdk\r\n        versionCode project.ext.versionCode\r\n        versionName project.ext.versionName\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n        consumerProguardFiles \"consumer-rules.pro\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n\r\n    kotlinOptions {\r\n        jvmTarget = '1.8'\r\n    }\r\n}\r\n\r\ndependencies {\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/domain/build.gradle b/domain/build.gradle
+--- a/domain/build.gradle	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/domain/build.gradle	(date 1641880386165)
+@@ -1,6 +1,11 @@
++import com.indramahkota.buildSrc.Libs
++
+ plugins {
+     id 'com.android.library'
+     id 'kotlin-android'
++    id 'kotlin-parcelize'
++    id 'kotlin-kapt'
++    id 'dagger.hilt.android.plugin'
+ }
+ 
+ android {
+@@ -33,6 +38,21 @@
+     }
+ }
+ 
++kapt {
++    arguments {
++        // Make Hilt share the same definition of Components in tests instead of
++        // creating a new set of Components per test class.
++        arg("dagger.hilt.shareTestComponents", "true")
++    }
++}
++
+ dependencies {
++    implementation project(":common")
+ 
++    // Hilt
++    implementation Libs.Dagger.hiltAndroid
++    kapt Libs.Dagger.hiltAndroidCompiler
++
++    // Test
++    testImplementation Libs.JUnit.junit
+ }
+\ No newline at end of file
+Index: data/src/main/java/com/indramahkota/data/NetworkBoundResource.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/NetworkBoundResource.kt b/data/src/main/java/com/indramahkota/data/NetworkBoundResource.kt
+new file mode 100644
+--- /dev/null	(date 1641880610491)
++++ b/data/src/main/java/com/indramahkota/data/NetworkBoundResource.kt	(date 1641880610491)
+@@ -0,0 +1,52 @@
++package com.indramahkota.data
++
++import androidx.annotation.MainThread
++import androidx.annotation.WorkerThread
++import com.indramahkota.data.source.remote.network.ApiEmptyResponse
++import com.indramahkota.data.source.remote.network.ApiErrorResponse
++import com.indramahkota.data.source.remote.network.ApiResponse
++import com.indramahkota.data.source.remote.network.ApiSuccessResponse
++import com.indramahkota.domain.utils.Resource
++import kotlinx.coroutines.flow.*
++
++abstract class NetworkBoundResource<ResultType, RequestType> {
++    fun asFlow(): Flow<Resource<ResultType>> = flow {
++        emit(Resource.Loading(null))
++
++        val dbValue = loadFromDb().first()
++        if (shouldFetch(dbValue)) {
++            emit(Resource.Loading(dbValue))
++            when (val apiResponse = createCall()) {
++                is ApiSuccessResponse -> {
++                    saveCallResult(apiResponse.body!!)
++                    emitAll(loadFromDb().map { Resource.Success(it) })
++                }
++                is ApiErrorResponse -> {
++                    onFetchFailed()
++                    emitAll(loadFromDb().map { Resource.Error(apiResponse.errorMessage, it) })
++                }
++                is ApiEmptyResponse -> {
++                    emitAll(loadFromDb().map { Resource.Success(it) })
++                }
++            }
++        } else {
++            emitAll(loadFromDb().map {
++                Resource.Success(it)
++            })
++        }
++    }
++
++    @WorkerThread
++    protected abstract suspend fun saveCallResult(data: RequestType)
++
++    @MainThread
++    protected abstract fun shouldFetch(data: ResultType): Boolean
++
++    @MainThread
++    protected abstract fun loadFromDb(): Flow<ResultType>
++
++    @MainThread
++    protected abstract suspend fun createCall(): ApiResponse<RequestType>
++
++    protected open fun onFetchFailed() {}
++}
+\ No newline at end of file
+Index: domain/src/main/java/com/indramahkota/domain/utils/Resource.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/domain/src/main/java/com/indramahkota/domain/utils/Resource.kt b/domain/src/main/java/com/indramahkota/domain/utils/Resource.kt
+new file mode 100644
+--- /dev/null	(date 1641880475964)
++++ b/domain/src/main/java/com/indramahkota/domain/utils/Resource.kt	(date 1641880475964)
+@@ -0,0 +1,10 @@
++package com.indramahkota.domain.utils
++
++sealed class Resource<T>(
++    val data: T? = null,
++    val message: String? = null
++) {
++    class Success<T>(data: T) : Resource<T>(data)
++    class Loading<T>(data: T? = null) : Resource<T>(data)
++    class Error<T>(message: String, data: T? = null) : Resource<T>(data, message)
++}
+Index: data/src/main/java/com/indramahkota/data/source/remote/RemoteDataSource.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/source/remote/RemoteDataSource.kt b/data/src/main/java/com/indramahkota/data/source/remote/RemoteDataSource.kt
+new file mode 100644
+--- /dev/null	(date 1641878417855)
++++ b/data/src/main/java/com/indramahkota/data/source/remote/RemoteDataSource.kt	(date 1641878417855)
+@@ -0,0 +1,54 @@
++package com.indramahkota.data.source.remote
++
++import com.indramahkota.data.source.remote.network.ApiEmptyResponse
++import com.indramahkota.data.source.remote.network.ApiResponse
++import com.indramahkota.data.source.remote.network.ApiService
++import com.indramahkota.data.source.remote.network.ApiSuccessResponse
++import kotlinx.coroutines.Dispatchers
++import kotlinx.coroutines.withContext
++import javax.inject.Inject
++import javax.inject.Singleton
++import kotlin.coroutines.CoroutineContext
++
++@Singleton
++class RemoteDataSource @Inject constructor(
++    private val service: ApiService
++) {
++    private val dispatcher: CoroutineContext = Dispatchers.IO
++
++    suspend fun getMovies() = withContext(dispatcher) {
++        try {
++            when (val response = ApiResponse.create(service.getMovies())) {
++                is ApiSuccessResponse -> {
++                    val success = response.body
++                    if (success.results.isEmpty()) {
++                        ApiEmptyResponse()
++                    } else {
++                        response
++                    }
++                }
++                else -> response
++            }
++        } catch (e: Exception) {
++            ApiResponse.create(e)
++        }
++    }
++
++    suspend fun getTvShows() = withContext(dispatcher) {
++        try {
++            when (val response = ApiResponse.create(service.getTvShows())) {
++                is ApiSuccessResponse -> {
++                    val success = response.body
++                    if (success.results.isEmpty()) {
++                        ApiEmptyResponse()
++                    } else {
++                        response
++                    }
++                }
++                else -> response
++            }
++        } catch (e: Exception) {
++            ApiResponse.create(e)
++        }
++    }
++}
+Index: data/src/main/java/com/indramahkota/data/MovieAppRepositoryImpl.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/src/main/java/com/indramahkota/data/MovieAppRepositoryImpl.kt b/data/src/main/java/com/indramahkota/data/MovieAppRepositoryImpl.kt
+new file mode 100644
+--- /dev/null	(date 1641881998445)
++++ b/data/src/main/java/com/indramahkota/data/MovieAppRepositoryImpl.kt	(date 1641881998445)
+@@ -0,0 +1,73 @@
++package com.indramahkota.data
++
++import com.indramahkota.data.source.local.LocalDataSource
++import com.indramahkota.data.source.remote.RemoteDataSource
++import com.indramahkota.data.source.remote.network.ApiResponse
++import com.indramahkota.data.source.remote.response.MovieResponse
++import com.indramahkota.data.utils.AppExecutors
++import com.indramahkota.data.utils.toListMovie
++import com.indramahkota.data.utils.toListMovieEntity
++import com.indramahkota.data.utils.toMovieEntity
++import com.indramahkota.domain.model.Movie
++import com.indramahkota.domain.repository.IMovieAppRepository
++import com.indramahkota.domain.utils.Resource
++import kotlinx.coroutines.flow.Flow
++import kotlinx.coroutines.flow.map
++import javax.inject.Inject
++import javax.inject.Singleton
++
++@Singleton
++class MovieAppRepositoryImpl @Inject constructor(
++    private val remoteDataSource: RemoteDataSource,
++    private val localDataSource: LocalDataSource,
++    private val appExecutors: AppExecutors
++) : IMovieAppRepository {
++    override fun getAllMovies(sort: String): Flow<Resource<List<Movie>>> =
++        object : NetworkBoundResource<List<Movie>, MovieResponse>() {
++            override suspend fun saveCallResult(data: MovieResponse) =
++                localDataSource.insertMovies(data.results.toListMovieEntity())
++
++            override fun shouldFetch(data: List<Movie>) =
++                data.isEmpty()
++
++            override fun loadFromDb(): Flow<List<Movie>> =
++                localDataSource.getAllMovies(sort).map {
++                    it.toListMovie()
++                }
++
++            override suspend fun createCall(): ApiResponse<MovieResponse> =
++                remoteDataSource.getMovies()
++        }.asFlow()
++
++    override fun getAllTvShows(sort: String): Flow<Resource<List<Movie>>> =
++        object : NetworkBoundResource<List<Movie>, MovieResponse>() {
++            override suspend fun saveCallResult(data: MovieResponse) =
++                localDataSource.insertMovies(data.results.toListMovieEntity(true))
++
++            override fun shouldFetch(data: List<Movie>) =
++                data.isEmpty()
++
++            override fun loadFromDb(): Flow<List<Movie>> =
++                localDataSource.getAllTvShows(sort).map {
++                    it.toListMovie(true)
++                }
++
++            override suspend fun createCall(): ApiResponse<MovieResponse> =
++                remoteDataSource.getTvShows()
++        }.asFlow()
++
++    override fun getFavoriteMovies(sort: String): Flow<List<Movie>> =
++        localDataSource.getAllFavoriteMovies(sort).map {
++            it.toListMovie()
++        }
++
++    override fun getFavoriteTvShows(sort: String): Flow<List<Movie>> =
++        localDataSource.getAllFavoriteTvShows(sort).map {
++            it.toListMovie(true)
++        }
++
++    override fun setMovieFavorite(movie: Movie, favorite: Boolean) {
++        val movieEntity = movie.toMovieEntity(movie.favorite)
++        appExecutors.diskIO().execute { localDataSource.setMovieFavorite(movieEntity, favorite) }
++    }
++}
+\ No newline at end of file
+Index: settings.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>dependencyResolutionManagement {\r\n    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)\r\n    repositories {\r\n        google()\r\n        mavenCentral()\r\n    }\r\n}\r\nrootProject.name = \"Hilt Example\"\r\ninclude ':app'\r\ninclude ':data'\r\ninclude ':domain'\r\ninclude ':regular_feature'\r\ninclude ':dynamic_feature'\r\ninclude ':common'\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/settings.gradle b/settings.gradle
+--- a/settings.gradle	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/settings.gradle	(date 1641879208387)
+@@ -5,10 +5,9 @@
+         mavenCentral()
+     }
+ }
+-rootProject.name = "Hilt Example"
++rootProject.name = "Dicoding Android Submission"
+ include ':app'
+ include ':data'
+ include ':domain'
+-include ':regular_feature'
+-include ':dynamic_feature'
++include ':favorite'
+ include ':common'
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import com.indramahkota.buildSrc.Libs\r\n\r\nplugins {\r\n    id 'com.android.application'\r\n    id 'kotlin-android'\r\n    id 'kotlin-kapt'\r\n    id 'dagger.hilt.android.plugin'\r\n    id 'androidx.navigation.safeargs.kotlin'\r\n}\r\n\r\nandroid {\r\n    compileSdk project.ext.compileSdk\r\n\r\n    defaultConfig {\r\n        applicationId \"com.indramahkota.hiltexample\"\r\n        minSdk project.ext.minSdk\r\n        targetSdk project.ext.targetSdk\r\n        versionCode project.ext.versionCode\r\n        versionName project.ext.versionName\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n\r\n    kotlinOptions {\r\n        jvmTarget = '1.8'\r\n    }\r\n\r\n    buildFeatures {\r\n        viewBinding true\r\n    }\r\n\r\n    dynamicFeatures = [':dynamic_feature']\r\n}\r\n\r\nkapt {\r\n    arguments {\r\n        // Make Hilt share the same definition of Components in tests instead of\r\n        // creating a new set of Components per test class.\r\n        arg(\"dagger.hilt.shareTestComponents\", \"true\")\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation project(\":common\")\r\n    implementation project(\":data\")\r\n    implementation project(\":domain\")\r\n    implementation project(\":regular_feature\")\r\n\r\n    // Common Libs\r\n    implementation Libs.Android.material\r\n    implementation Libs.AndroidX.appcompat\r\n    implementation Libs.AndroidX.Constraint.constraintLayout\r\n\r\n    // Navigation Component\r\n    implementation Libs.AndroidX.Navigation.ui\r\n    implementation Libs.AndroidX.Navigation.fragment\r\n    implementation Libs.AndroidX.Navigation.dynamicFeaturesFragment\r\n    androidTestImplementation Libs.AndroidX.Navigation.testing\r\n\r\n    // Hilt\r\n    implementation Libs.Dagger.hiltAndroid\r\n    kapt Libs.Dagger.hiltAndroidCompiler\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/app/build.gradle	(date 1641880194643)
+@@ -41,7 +41,7 @@
+         viewBinding true
+     }
+ 
+-    dynamicFeatures = [':dynamic_feature']
++    dynamicFeatures = [':favorite']
+ }
+ 
+ kapt {
+@@ -56,12 +56,6 @@
+     implementation project(":common")
+     implementation project(":data")
+     implementation project(":domain")
+-    implementation project(":regular_feature")
+-
+-    // Common Libs
+-    implementation Libs.Android.material
+-    implementation Libs.AndroidX.appcompat
+-    implementation Libs.AndroidX.Constraint.constraintLayout
+ 
+     // Navigation Component
+     implementation Libs.AndroidX.Navigation.ui
+Index: common/src/main/java/com/indramahkota/common/base/BaseRecycleViewAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/src/main/java/com/indramahkota/common/base/BaseRecycleViewAdapter.kt b/common/src/main/java/com/indramahkota/common/base/BaseRecycleViewAdapter.kt
+new file mode 100644
+--- /dev/null	(date 1641877703535)
++++ b/common/src/main/java/com/indramahkota/common/base/BaseRecycleViewAdapter.kt	(date 1641877703535)
+@@ -0,0 +1,183 @@
++package com.indramahkota.common.base
++
++import android.annotation.SuppressLint
++import androidx.recyclerview.widget.LinearLayoutManager
++import androidx.recyclerview.widget.RecyclerView
++import com.indramahkota.common.utils.Constant
++import timber.log.Timber
++
++interface BaseModel {
++    fun getType(): Int
++}
++
++class LoadingModel : BaseModel {
++    override fun getType(): Int = Constant.TYPE_LOADING
++}
++
++class EmptyModel(val message: String) : BaseModel {
++    override fun getType(): Int = Constant.TYPE_EMPTY
++}
++
++abstract class BaseRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
++    protected var data: MutableList<BaseModel> = ArrayList()
++
++    private var lastVisibleItem: Int? = null
++    private var totalItemCount: Int? = null
++    private var totalItemBeforeLoadMore: Int? = null
++
++    private var isLoadingMore = false
++    private var isDataEnd = false
++
++    var page = 1
++
++    private var swipeRefresh = false
++
++    fun addSupportLoadMore(
++        recyclerView: RecyclerView,
++        visibleThreshold: Int,
++        onLoadMore: (page: Int) -> Unit
++    ) {
++        val layoutManager = recyclerView.layoutManager
++        if (layoutManager != null) {
++            if (layoutManager is LinearLayoutManager) {
++                totalItemBeforeLoadMore = layoutManager.itemCount
++                recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
++                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
++                        super.onScrolled(recyclerView, dx, dy)
++                        totalItemCount = layoutManager.itemCount
++                        lastVisibleItem = layoutManager.findLastVisibleItemPosition()
++                        if (!swipeRefresh && !isDataEnd && !isLoadingMore && totalItemCount!! <= (lastVisibleItem!! + visibleThreshold)) {
++                            page++
++                            onLoadMore(page)
++                            isLoadingMore = true
++                        }
++                    }
++                })
++            } else {
++                Timber.d("Only support LinearLayoutManager")
++            }
++        } else {
++            Timber.d("No LayoutManager found")
++        }
++    }
++
++    override fun getItemCount(): Int {
++        return data.size
++    }
++
++    fun get(position: Int): BaseModel {
++        return data[position]
++    }
++
++    fun getPosition(item: BaseModel): Int {
++        return data.indexOf(item)
++    }
++
++    @SuppressLint("NotifyDataSetChanged")
++    open fun setDatas(items: List<BaseModel>) {
++        data.clear()
++        data.addAll(items)
++        notifyDataSetChanged()
++    }
++
++    fun addData(items: List<BaseModel>) {
++        data.addAll(items)
++        notifyItemRangeInserted(itemCount - 1, items.size)
++    }
++
++    open fun addItem(item: BaseModel) {
++        data.add(item)
++        notifyItemInserted(itemCount - 1)
++    }
++
++    fun addItem(item: BaseModel, position: Int) {
++        data.add(position, item)
++        notifyItemInserted(position)
++    }
++
++    fun changeItem(item: BaseModel, position: Int) {
++        data.removeAt(position)
++        data.add(position, item)
++        notifyItemChanged(position)
++    }
++
++    fun deleteItem(position: Int) {
++        if (position < itemCount) {
++            data.removeAt(position)
++            notifyItemRemoved(position)
++        }
++    }
++
++    fun deleteItem(item: BaseModel) {
++        data.remove(item)
++    }
++
++    private fun deleteEmpty() {
++        val dataCopy = data.toList()
++        for ((index, value) in dataCopy.withIndex()) {
++            if (value is EmptyModel) {
++                deleteItem(index)
++            }
++        }
++    }
++
++    private fun deleteLoading() {
++        val dataCopy = data.toList()
++        for ((index, value) in dataCopy.withIndex()) {
++            if (value is LoadingModel) {
++                deleteItem(index)
++            }
++        }
++    }
++
++    @SuppressLint("NotifyDataSetChanged")
++    fun clear() {
++        data.clear()
++        notifyDataSetChanged()
++    }
++
++    fun setLoading() {
++        deleteEmpty()
++        deleteLoading()
++        isLoadingMore = true
++        addItem(LoadingModel())
++    }
++
++    fun setLoaded() {
++        if (isLoadingMore) {
++            isLoadingMore = false
++            deleteLoading()
++        }
++    }
++
++    fun setDataEnd(isDataEnd: Boolean) {
++        if (!isDataEnd) {
++            page = 1
++        }
++        this.isDataEnd = isDataEnd
++    }
++
++    fun isDataEnd(): Boolean {
++        return isDataEnd
++    }
++
++    fun swipeRefresh(swipe: Boolean) {
++        swipeRefresh = swipe
++    }
++
++    fun loadMore(loadMore: Boolean) {
++        isLoadingMore = loadMore
++    }
++
++    fun getLoadMore(): Boolean {
++        return isLoadingMore
++    }
++
++    fun getListData(): MutableList<BaseModel> {
++        return data
++    }
++
++    override fun getItemViewType(position: Int): Int {
++        return data[position].getType()
++    }
++}
+\ No newline at end of file
+Index: dynamic_feature/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/dynamic_feature/src/main/AndroidManifest.xml b/favorite/src/main/AndroidManifest.xml
+rename from dynamic_feature/src/main/AndroidManifest.xml
+rename to favorite/src/main/AndroidManifest.xml
+--- a/dynamic_feature/src/main/AndroidManifest.xml	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/favorite/src/main/AndroidManifest.xml	(date 1641879337669)
+@@ -1,10 +1,10 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <manifest xmlns:dist="http://schemas.android.com/apk/distribution"
+-    package="com.indramahkota.dynamic_feature">
++    package="com.indramahkota.favorite">
+ 
+     <dist:module
+         dist:instant="false"
+-        dist:title="@string/title_dynamic_feature">
++        dist:title="@string/favorite_favorite_title">
+         <dist:delivery>
+             <dist:install-time />
+         </dist:delivery>
+Index: dynamic_feature/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/dynamic_feature/build.gradle b/favorite/build.gradle
+rename from dynamic_feature/build.gradle
+rename to favorite/build.gradle
+--- a/dynamic_feature/build.gradle	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/favorite/build.gradle	(date 1641882856521)
+@@ -11,7 +11,7 @@
+     compileSdk project.ext.compileSdk
+ 
+     defaultConfig {
+-        applicationId "com.indramahkota.dynamic_feature"
++        applicationId "com.indramahkota.favorite"
+         minSdk project.ext.minSdk
+         targetSdk project.ext.targetSdk
+         versionCode project.ext.versionCode
+@@ -55,6 +55,11 @@
+     implementation Libs.AndroidX.appcompat
+     implementation Libs.AndroidX.Constraint.constraintLayout
+ 
++    // Lifecycle ktx
++    implementation Libs.AndroidX.Lifecycle.runtime
++    implementation Libs.AndroidX.Lifecycle.viewmodel
++    implementation Libs.AndroidX.Lifecycle.liveData
++
+     // Hilt
+     implementation Libs.Dagger.hiltAndroid
+     kapt Libs.Dagger.hiltAndroidCompiler
+Index: app/src/main/java/com/indramahkota/hiltexample/di/DbModule.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/indramahkota/hiltexample/di/DbModule.kt b/app/src/main/java/com/indramahkota/hiltexample/di/DbModule.kt
+new file mode 100644
+--- /dev/null	(date 1641881214110)
++++ b/app/src/main/java/com/indramahkota/hiltexample/di/DbModule.kt	(date 1641881214110)
+@@ -0,0 +1,24 @@
++package com.indramahkota.hiltexample.di
++
++import android.content.Context
++import com.indramahkota.common.utils.Constant
++import com.indramahkota.data.source.local.room.MovieDatabase
++import dagger.Module
++import dagger.Provides
++import dagger.hilt.InstallIn
++import dagger.hilt.android.qualifiers.ApplicationContext
++import dagger.hilt.components.SingletonComponent
++import javax.inject.Singleton
++
++@Module
++@InstallIn(SingletonComponent::class)
++object DbModule {
++    @Provides
++    @Singleton
++    fun provideLocalDB(
++        @ApplicationContext context: Context
++    ) = MovieDatabase.invoke(context, Constant.DB_NAME)
++
++    @Provides
++    fun provideTourismDao(db: MovieDatabase) = db.movieDao()
++}
+\ No newline at end of file
+Index: app/src/main/java/com/indramahkota/hiltexample/di/NetModule.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/indramahkota/hiltexample/di/NetModule.kt b/app/src/main/java/com/indramahkota/hiltexample/di/NetModule.kt
+new file mode 100644
+--- /dev/null	(date 1641881316923)
++++ b/app/src/main/java/com/indramahkota/hiltexample/di/NetModule.kt	(date 1641881316923)
+@@ -0,0 +1,70 @@
++package com.indramahkota.hiltexample.di
++
++import android.content.Context
++import com.google.gson.Gson
++import com.google.gson.GsonBuilder
++import com.indramahkota.common.utils.Constant
++import com.indramahkota.data.source.remote.interceptor.ConnectivityInterceptor
++import com.indramahkota.data.source.remote.network.ApiService
++import com.indramahkota.hiltexample.BuildConfig
++import dagger.Module
++import dagger.Provides
++import dagger.hilt.InstallIn
++import dagger.hilt.android.qualifiers.ApplicationContext
++import dagger.hilt.components.SingletonComponent
++import okhttp3.OkHttpClient
++import okhttp3.logging.HttpLoggingInterceptor
++import retrofit2.Retrofit
++import retrofit2.converter.gson.GsonConverterFactory
++import javax.inject.Singleton
++
++@Module
++@InstallIn(SingletonComponent::class)
++object NetModule {
++    @Provides
++    @Singleton
++    fun provideConnectivityInterceptor(
++        @ApplicationContext context: Context
++    ) = ConnectivityInterceptor(context)
++
++    @Provides
++    @Singleton
++    fun provideLoggingInterceptor() = HttpLoggingInterceptor().apply {
++        if (BuildConfig.DEBUG) {
++            setLevel(HttpLoggingInterceptor.Level.BODY)
++        }
++    }
++
++    @Singleton
++    @Provides
++    fun provideOkHttpClient(
++        connectivityInterceptor: ConnectivityInterceptor,
++        httpLoggingInterceptor: HttpLoggingInterceptor
++    ) = OkHttpClient
++        .Builder().apply {
++            addInterceptor(httpLoggingInterceptor)
++            addInterceptor(connectivityInterceptor)
++        }.build()
++
++    @Provides
++    @Singleton
++    fun provideGson() = GsonBuilder().create()
++
++    @Provides
++    @Singleton
++    fun provideRetrofit(
++        gson: Gson,
++        okHttpClient: OkHttpClient,
++    ) = Retrofit
++        .Builder().apply {
++            baseUrl(Constant.BASE_URL)
++            client(okHttpClient)
++            addConverterFactory(GsonConverterFactory.create(gson))
++        }.build()
++
++    @Provides
++    @Singleton
++    fun provideMovieService(
++        retrofit: Retrofit
++    ) = retrofit.create(ApiService::class.java)
++}
+\ No newline at end of file
+Index: app/src/main/java/com/indramahkota/hiltexample/di/UseCaseModule.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/indramahkota/hiltexample/di/UseCaseModule.kt b/app/src/main/java/com/indramahkota/hiltexample/di/UseCaseModule.kt
+new file mode 100644
+--- /dev/null	(date 1641882267966)
++++ b/app/src/main/java/com/indramahkota/hiltexample/di/UseCaseModule.kt	(date 1641882267966)
+@@ -0,0 +1,19 @@
++package com.indramahkota.hiltexample.di
++
++import com.indramahkota.domain.repository.IMovieAppRepository
++import com.indramahkota.domain.usecase.MovieAppUseCase
++import com.indramahkota.domain.usecase.MovieAppUseCaseImpl
++import dagger.Module
++import dagger.Provides
++import dagger.hilt.InstallIn
++import dagger.hilt.components.SingletonComponent
++import javax.inject.Singleton
++
++@Module
++@InstallIn(SingletonComponent::class)
++object UseCaseModule {
++    @Provides
++    @Singleton
++    fun provideMovieUseCase(repository: IMovieAppRepository): MovieAppUseCase =
++        MovieAppUseCaseImpl(repository)
++}
+\ No newline at end of file
+Index: common/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.library'\r\n    id 'kotlin-android'\r\n}\r\n\r\nandroid {\r\n    compileSdk 31\r\n\r\n    defaultConfig {\r\n        minSdk 23\r\n        targetSdk 31\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n        consumerProguardFiles \"consumer-rules.pro\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n    kotlinOptions {\r\n        jvmTarget = '1.8'\r\n    }\r\n}\r\n\r\ndependencies {\r\n\r\n    implementation 'androidx.core:core-ktx:1.7.0'\r\n    implementation 'androidx.appcompat:appcompat:1.4.0'\r\n    implementation 'com.google.android.material:material:1.4.0'\r\n    testImplementation 'junit:junit:4.+'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.3'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/build.gradle b/common/build.gradle
+--- a/common/build.gradle	(revision 4f5a2190f21ce5c1d5f414d0138508062abfcf60)
++++ b/common/build.gradle	(date 1641879878109)
+@@ -1,16 +1,18 @@
++import com.indramahkota.buildSrc.Libs
++
+ plugins {
+     id 'com.android.library'
+     id 'kotlin-android'
+ }
+ 
+ android {
+-    compileSdk 31
++    compileSdk project.ext.compileSdk
+ 
+     defaultConfig {
+-        minSdk 23
+-        targetSdk 31
+-        versionCode 1
+-        versionName "1.0"
++        minSdk project.ext.minSdk
++        targetSdk project.ext.targetSdk
++        versionCode project.ext.versionCode
++        versionName project.ext.versionName
+ 
+         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+         consumerProguardFiles "consumer-rules.pro"
+@@ -32,11 +34,18 @@
+ }
+ 
+ dependencies {
++    // Core KTX
++    api Libs.AndroidX.coreKtx
++
++    // Coroutines
++    api Libs.Coroutines.core
++    api Libs.Coroutines.android
+ 
+-    implementation 'androidx.core:core-ktx:1.7.0'
+-    implementation 'androidx.appcompat:appcompat:1.4.0'
+-    implementation 'com.google.android.material:material:1.4.0'
+-    testImplementation 'junit:junit:4.+'
+-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
++    // Common Libs
++    api Libs.Android.material
++    api Libs.AndroidX.appcompat
++    api Libs.AndroidX.Constraint.constraintLayout
++
++    // Timber
++    api Libs.Timber.timber
+ }
+\ No newline at end of file
+diff --git a/regular_feature/consumer-rules.pro b/regular_feature/consumer-rules.pro
+deleted file mode 100644
+diff --git a/dynamic_feature/.gitignore b/favorite/.gitignore
+rename from dynamic_feature/.gitignore
+rename to favorite/.gitignore

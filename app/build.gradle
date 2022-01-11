@@ -41,7 +41,7 @@ android {
         viewBinding true
     }
 
-    dynamicFeatures = [':dynamic_feature']
+    dynamicFeatures = [':favorite']
 }
 
 kapt {
@@ -56,12 +56,6 @@ dependencies {
     implementation project(":common")
     implementation project(":data")
     implementation project(":domain")
-    implementation project(":regular_feature")
-
-    // Common Libs
-    implementation Libs.Android.material
-    implementation Libs.AndroidX.appcompat
-    implementation Libs.AndroidX.Constraint.constraintLayout
 
     // Navigation Component
     implementation Libs.AndroidX.Navigation.ui

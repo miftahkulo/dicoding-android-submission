@@ -5,10 +5,9 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Hilt Example"
+rootProject.name = "Dicoding Android Submission"
 include ':app'
 include ':data'
 include ':domain'
-include ':regular_feature'
-include ':dynamic_feature'
+include ':favorite'
 include ':common'

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hilt Example</string>
+    <string name="app_name">Moveous</string>
     <string name="title_dynamic_feature">Module Title</string>
     <string name="hello_world_from_app">Hello World from App!</string>
     <string name="regular_feature">Regular</string>

@@ -1,6 +1,10 @@
+import com.indramahkota.buildSrc.Libs
+
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -33,6 +37,32 @@ android {
     }
 }
 
+kapt {
+    arguments {
+        // Make Hilt share the same definition of Components in tests instead of
+        // creating a new set of Components per test class.
+        arg("dagger.hilt.shareTestComponents", "true")
+    }
+}
+
 dependencies {
+    implementation project(":common")
     implementation project(":domain")
+
+    // Hilt
+    implementation Libs.Dagger.hiltAndroid
+    kapt Libs.Dagger.hiltAndroidCompiler
+
+    // Room
+    api Libs.AndroidX.Room.runtime
+    api Libs.AndroidX.Room.ktx
+    kapt Libs.AndroidX.Room.compiler
+
+    // Okhttp
+    api Libs.OkHttp.okhttp
+    api Libs.OkHttp.logging
+
+    // Retrofit
+    api Libs.Retrofit.retrofit
+    api Libs.Retrofit.gsonConverter
 }
