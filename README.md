@@ -1,10 +1,10 @@
-# Base Android App with Hilt Multi Module
+# Menjadi Android Developer Expert
 
-[![GitHub](https://img.shields.io/github/license/indramahkota/hilt-multi-module-sample?color=blue)](https://github.com/indramahkota/hilt-multi-module-sample/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/indramahkota/hilt-multi-module-sample)](https://github.com/indramahkota/hilt-multi-module-sample/stargazers)  [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+[![GitHub](https://img.shields.io/github/license/indramahkota/dicoding-android-submission?color=blue)](https://github.com/indramahkota/dicoding-android-submission/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/indramahkota/dicoding-android-submission)](https://github.com/indramahkota/dicoding-android-submission/stargazers)  [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 ## Structure
 ```
-- hilt-multi-module-sample
+- dicoding-android-submission
     - buildSrc
         - dependencies
     - app
@@ -12,18 +12,17 @@
         - data
         - domain
         - common
-    - dynamic_feature
-    - regular_feature
+    - favorite (Dynamic Feature)
 ```
 
 ## How To Use 🔧
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/indramahkota/hilt-multi-module-sample.git
+$ git clone https://github.com/indramahkota/dicoding-android-submission.git
 
 # Go into the repository
-$ cd hilt-multi-module-sample
+$ cd dicoding-android-submission
 
 # Open in Android Studio
 ```
