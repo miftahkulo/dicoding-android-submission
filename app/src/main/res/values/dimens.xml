@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Size -->
+    <dimen name="appbarHeight">65dp</dimen>
+    <dimen name="bottomNavHeight">65dp</dimen>
+
+    <!-- Text -->
+    <dimen name="textTiny">10sp</dimen>
+    <dimen name="textSmall">12sp</dimen>
+    <dimen name="textNormal">14sp</dimen>
+    <dimen name="textLarge">16sp</dimen>
+    <dimen name="textExtraLarge">18sp</dimen>
+    <dimen name="textExtraXLarge">20sp</dimen>
+    <dimen name="textExtraXXLarge">26sp</dimen>
+
+    <!-- Spacing -->
+    <dimen name="spacingTiny">4dp</dimen>
+    <dimen name="spacingSmall">8dp</dimen>
+    <dimen name="spacingNormal">16dp</dimen>
+    <dimen name="spacingLarge">24dp</dimen>
+    <dimen name="spacingExtraLarge">48dp</dimen>
+    <dimen name="spacingSuperLarge">96dp</dimen>
+
+    <!-- Corner -->
+    <dimen name="cornerSuperTiny">4dp</dimen>
+    <dimen name="cornerTiny">8dp</dimen>
+    <dimen name="cornerSmall">16dp</dimen>
+    <dimen name="cornerNormal">20dp</dimen>
+
+    <!-- Elevation -->
+    <dimen name="elevationNone">0dp</dimen>
+    <dimen name="elevationTiny">2dp</dimen>
+    <dimen name="elevationNormal">4dp</dimen>
+
+    <!-- Margin -->
+    <dimen name="marginTiny">4dp</dimen>
+    <dimen name="marginSmall">8dp</dimen>
+    <dimen name="marginNormal">16dp</dimen>
+    <dimen name="marginLarge">24dp</dimen>
+    <dimen name="marginExtraLarge">48dp</dimen>
+    <dimen name="marginSuperLarge">96dp</dimen>
+
+    <!-- Padding -->
+    <dimen name="paddingTiny">4dp</dimen>
+    <dimen name="paddingSmall">8dp</dimen>
+    <dimen name="paddingNormal">16dp</dimen>
+    <dimen name="paddingLarge">24dp</dimen>
+    <dimen name="paddingExtraLarge">48dp</dimen>
+    <dimen name="paddingSuperLarge">96dp</dimen>
+</resources>

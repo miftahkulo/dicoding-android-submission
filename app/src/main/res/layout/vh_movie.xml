@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="0dp"
+    app:strokeColor="@color/colorBackground"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/img_poster"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_star_yellow_24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/title"
+            android:textSize="@dimen/textLarge"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_poster"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_overview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/marginSmall"
+            android:layout_marginTop="@dimen/marginSmall"
+            android:layout_marginBottom="@dimen/marginSmall"
+            android:ellipsize="end"
+            android:maxLines="4"
+            android:text="@string/lorem_ipsum"
+            android:textSize="@dimen/textNormal"
+            app:layout_constraintBottom_toTopOf="@+id/txt_release_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_poster"
+            app:layout_constraintTop_toBottomOf="@+id/txt_title" />
+
+        <ImageView
+            android:id="@+id/img_star"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="0dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_star_yellow_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_poster"
+            app:layout_constraintStart_toEndOf="@+id/img_poster" />
+
+        <TextView
+            android:id="@+id/txt_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="0dp"
+            android:gravity="center_vertical"
+            android:text="@string/title"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_poster"
+            app:layout_constraintStart_toEndOf="@+id/img_star" />
+
+        <ImageView
+            android:id="@+id/img_date"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_date_range_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_rating"
+            app:layout_constraintStart_toEndOf="@+id/txt_rating"
+            app:layout_constraintTop_toTopOf="@+id/txt_rating" />
+
+        <TextView
+            android:id="@+id/txt_release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="0dp"
+            android:gravity="center_vertical"
+            android:text="@string/title"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_poster"
+            app:layout_constraintStart_toEndOf="@+id/img_date" />
+
+        <ImageView
+            android:id="@+id/img_bookmark"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="-5dp"
+            android:layout_marginTop="-5dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_bookmark_pink_24dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

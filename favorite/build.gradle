@@ -50,11 +50,6 @@ dependencies {
     implementation Libs.AndroidX.Fragment.fragmentKtx
     implementation Libs.AndroidX.Activity.activityKtx
 
-    // Common Libs
-    implementation Libs.Android.material
-    implementation Libs.AndroidX.appcompat
-    implementation Libs.AndroidX.Constraint.constraintLayout
-
     // Lifecycle ktx
     implementation Libs.AndroidX.Lifecycle.runtime
     implementation Libs.AndroidX.Lifecycle.viewmodel

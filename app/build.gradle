@@ -57,13 +57,26 @@ dependencies {
     implementation project(":data")
     implementation project(":domain")
 
-    // Navigation Component
-    implementation Libs.AndroidX.Navigation.ui
-    implementation Libs.AndroidX.Navigation.fragment
-    implementation Libs.AndroidX.Navigation.dynamicFeaturesFragment
-    androidTestImplementation Libs.AndroidX.Navigation.testing
-
     // Hilt
     implementation Libs.Dagger.hiltAndroid
     kapt Libs.Dagger.hiltAndroidCompiler
+
+    // KTX
+    implementation Libs.AndroidX.Fragment.fragmentKtx
+    implementation Libs.AndroidX.Activity.activityKtx
+
+    // Lifecycle ktx
+    implementation Libs.AndroidX.Lifecycle.runtime
+    implementation Libs.AndroidX.Lifecycle.viewmodel
+    implementation Libs.AndroidX.Lifecycle.liveData
+
+    // Hilt Lifecycle
+    implementation Libs.Dagger.hiltLifecycleViewModel
+
+    // Glide
+    implementation Libs.Glide.glide
+    annotationProcessor Libs.Glide.compiler
+
+    // Shimmer
+    implementation Libs.Shimmer.shimmer
 }

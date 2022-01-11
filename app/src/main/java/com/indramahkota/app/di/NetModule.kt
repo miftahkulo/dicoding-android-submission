@@ -7,6 +7,7 @@ import com.indramahkota.common.utils.Constant
 import com.indramahkota.data.source.remote.interceptor.ConnectivityInterceptor
 import com.indramahkota.data.source.remote.network.ApiService
 import com.indramahkota.app.BuildConfig
+import com.indramahkota.data.source.remote.interceptor.ApiKeyInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,15 +36,21 @@ object NetModule {
         }
     }
 
+    @Provides
+    @Singleton
+    fun provideApiKeyInterceptor() = ApiKeyInterceptor()
+
     @Singleton
     @Provides
     fun provideOkHttpClient(
         connectivityInterceptor: ConnectivityInterceptor,
-        httpLoggingInterceptor: HttpLoggingInterceptor
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        apiKeyInterceptor: ApiKeyInterceptor
     ) = OkHttpClient
         .Builder().apply {
             addInterceptor(httpLoggingInterceptor)
             addInterceptor(connectivityInterceptor)
+            addInterceptor(apiKeyInterceptor)
         }.build()
 
     @Provides

@@ -46,6 +46,11 @@ dependencies {
     api Libs.AndroidX.appcompat
     api Libs.AndroidX.Constraint.constraintLayout
 
+    // Navigation Component
+    api Libs.AndroidX.Navigation.ui
+    api Libs.AndroidX.Navigation.fragment
+    api Libs.AndroidX.Navigation.dynamicFeaturesFragment
+
     // Timber
     api Libs.Timber.timber
 }

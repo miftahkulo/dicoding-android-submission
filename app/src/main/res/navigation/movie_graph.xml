@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/movieFragment"
+    android:id="@+id/movie_graph">
+
+    <fragment
+        android:id="@+id/movieFragment"
+        android:name="com.indramahkota.app.presentation.movie.MovieFragment"
+        android:label="MovieFragment"
+        tools:layout="@layout/fragment_movie" />
+
+</navigation>

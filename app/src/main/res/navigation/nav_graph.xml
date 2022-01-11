@@ -7,16 +7,8 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.indramahkota.app.presentation.HomeFragment"
+        android:name="com.indramahkota.app.presentation.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home" />
-
-    <!-- Mitigasi kenapa jika moduleName diberikan dynamic feature tidak bekerja  -->
-    <!-- app:moduleName="Hilt_Example.dynamic_feature"
-        tools:layout="@layout/fragment_dynamic_feature" -->
-    <fragment
-        android:id="@+id/dynamicFeatureFragment"
-        android:name="com.indramahkota.favorite.FavoriteFragment"
-        android:label="DynamicFeatureFragment" />
 
 </navigation>

@@ -3,12 +3,35 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/drawable/bg_bottom_nav_view.xml" value="0.26614583333333336" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/drawable/bg_rounded_8.xml" value="0.26614583333333336" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/drawable/ic_bookmark_pink_24dp.xml" value="0.26614583333333336" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/drawable/ic_date_range_black_24dp.xml" value="0.26614583333333336" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/drawable/ic_favorite_white_24dp.xml" value="0.26614583333333336" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26614583333333336" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/drawable/ic_live_tv_white_24dp.xml" value="0.26614583333333336" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/drawable/ic_logo.xml" value="0.26614583333333336" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/drawable/ic_movie_white_24dp.xml" value="0.26614583333333336" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/drawable/ic_star_yellow_24dp.xml" value="0.26614583333333336" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/drawable/pb_circle.xml" value="0.26614583333333336" />
         <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/layout/activity_main.xml" value="0.11481481481481481" />
         <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/layout/fragment_home.xml" value="0.11481481481481481" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/layout/fragment_movie.xml" value="0.11203703703703703" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/layout/fragment_tv.xml" value="0.11203703703703703" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/layout/inc_header.xml" value="0.11203703703703703" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/layout/vh_details.xml" value="0.16847826086956522" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/layout/vh_details_loading.xml" value="0.11203703703703703" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/layout/vh_item_empty.xml" value="0.11203703703703703" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/layout/vh_item_loading.xml" value="0.11203703703703703" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/layout/vh_movie.xml" value="0.11203703703703703" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/layout/vh_movie_loading.xml" value="0.11203703703703703" />
+        <entry key="..\:/Programming/Kotlin/dicoding-android-submission/app/src/main/res/menu/home_bottom_nav_menu.xml" value="0.11203703703703703" />
         <entry key="..\:/Programming/Kotlin/dicoding-android-submission/favorite/src/main/res/layout/fragment_favorite.xml" value="0.11481481481481481" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>
