@@ -7,8 +7,15 @@
 
     <fragment
         android:id="@+id/movieFragment"
-        android:name="com.indramahkota.app.presentation.movie.MovieFragment"
+        android:name="com.indramahkota.app.presentation.movie.MovieListFragment"
         android:label="MovieFragment"
-        tools:layout="@layout/fragment_movie" />
+        tools:layout="@layout/fragment_list_movie">
+
+        <argument
+            android:name="isTv"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+    </fragment>
 
 </navigation>
