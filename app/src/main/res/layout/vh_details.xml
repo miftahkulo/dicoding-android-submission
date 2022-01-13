@@ -12,35 +12,12 @@
         android:layout_height="wrap_content"
         android:paddingBottom="10dp">
 
-        <View
-            android:id="@+id/bg_top"
-            android:layout_width="match_parent"
-            android:layout_height="270dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="#107896"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/img_background"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:alpha="0.5"
-            android:background="@color/colorBackground"
-            android:contentDescription="@null"
-            android:scaleType="centerCrop"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ImageView
             android:id="@+id/img_poster"
             android:layout_width="125dp"
             android:layout_height="199dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
             android:contentDescription="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,13 +26,13 @@
             android:id="@+id/textView"
             style="@style/TextContent.ExtraLarge"
             android:layout_width="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/img_poster"
             android:text="@string/title"
+            android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/img_poster"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/img_poster" />
 
         <TextView
             android:id="@+id/txt_title"
@@ -63,11 +40,12 @@
             android:layout_width="0dp"
             android:layout_below="@+id/textView"
             android:layout_gravity="bottom"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_toEndOf="@+id/img_poster"
             android:text="@string/title"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_poster"
@@ -79,10 +57,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_title"
-            android:layout_marginStart="0dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@+id/img_poster"
             android:text="@string/rating"
+            android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/img_poster"
             app:layout_constraintTop_toBottomOf="@+id/txt_title" />
@@ -93,11 +72,12 @@
             android:layout_width="0dp"
             android:layout_below="@+id/textView2"
             android:layout_gravity="bottom"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_toEndOf="@+id/img_poster"
             android:text="@string/title"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_poster"
@@ -108,10 +88,11 @@
             style="@style/TextContent.ExtraLarge"
             android:layout_width="wrap_content"
             android:layout_below="@+id/txt_rating"
-            android:layout_marginStart="0dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@+id/img_poster"
             android:text="@string/language"
+            android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/img_poster"
             app:layout_constraintTop_toBottomOf="@+id/txt_rating" />
@@ -122,11 +103,12 @@
             android:layout_width="0dp"
             android:layout_below="@+id/textView3"
             android:layout_gravity="bottom"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_toEndOf="@+id/img_poster"
             android:text="@string/english_lang"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_poster"
@@ -137,10 +119,11 @@
             style="@style/TextContent.ExtraLarge"
             android:layout_width="wrap_content"
             android:layout_below="@+id/txt_language"
-            android:layout_marginStart="0dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@+id/img_poster"
             android:text="@string/release_date"
+            android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/img_poster"
             app:layout_constraintTop_toBottomOf="@+id/txt_language" />
@@ -151,26 +134,28 @@
             android:layout_width="0dp"
             android:layout_below="@+id/textView4"
             android:layout_gravity="bottom"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_toEndOf="@+id/img_poster"
             android:text="@string/title"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_poster"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="16dp"
             app:cardCornerRadius="4dp"
             app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bg_top">
+            app:layout_constraintTop_toBottomOf="@+id/img_poster">
 
             <TextView
                 android:id="@+id/textView5"
@@ -194,7 +179,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

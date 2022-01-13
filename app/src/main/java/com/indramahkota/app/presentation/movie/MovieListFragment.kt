@@ -14,7 +14,6 @@ import com.indramahkota.app.viewmodel.MovieViewModel
 import com.indramahkota.common.base.BaseBindingFragment
 import com.indramahkota.common.base.BaseModel
 import com.indramahkota.common.base.LoadingModel
-import com.indramahkota.common.utils.navigateSafe
 import com.indramahkota.domain.model.Movie
 import com.indramahkota.domain.utils.Resource
 import timber.log.Timber

@@ -74,6 +74,11 @@ class MovieAdapter(
                     if (item.favorite) imgBookmark.visibility =
                         View.VISIBLE else imgBookmark.visibility = View.GONE
 
+                    if (position == itemCount - 1)
+                        divider.visibility = View.GONE
+                    else
+                        divider.visibility = View.VISIBLE
+
                     Glide.with(context)
                         .load("${Constant.BASE_IMAGE_URL}/${item.posterPath}")
                         .transform(RoundedCorners(8.dpToPx(holder.itemView.context).toInt()))
