@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.indramahkota.app.R
 import com.indramahkota.app.databinding.FragmentListMovieBinding
 import com.indramahkota.app.presentation.adapter.MovieAdapter
 import com.indramahkota.app.viewmodel.MovieViewModel
 import com.indramahkota.common.base.BaseBindingFragment
 import com.indramahkota.common.base.BaseModel
 import com.indramahkota.common.base.LoadingModel
+import com.indramahkota.common.utils.navigateSafe
 import com.indramahkota.domain.model.Movie
 import com.indramahkota.domain.utils.Resource
 import timber.log.Timber
@@ -37,7 +40,13 @@ class MovieListFragment : BaseBindingFragment() {
     }
 
     private fun initRecycleView() {
-        movieAdapter = MovieAdapter().also {
+        movieAdapter = MovieAdapter {
+            findNavController().navigate(R.id.detail_graph, Bundle().apply {
+                putParcelable("movie", it)
+            })
+
+            Timber.d("Movie Clicked")
+        }.also {
             it.setDatas(listOf())
         }
 

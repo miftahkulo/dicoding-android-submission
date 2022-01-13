@@ -13,7 +13,6 @@ import com.indramahkota.app.databinding.FragmentHomeBinding
 import com.indramahkota.app.viewmodel.SharedViewModel
 import com.indramahkota.common.base.BaseBindingFragment
 import com.indramahkota.common.utils.navigateSafe
-import timber.log.Timber
 
 class HomeFragment : BaseBindingFragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -39,9 +38,6 @@ class HomeFragment : BaseBindingFragment() {
 
             bottomNavView.setOnItemSelectedListener { item ->
                 sharedViewModel.previousHomeStateFragment = item.itemId
-
-                Timber.d("${item.itemId}")
-
                 if (item.itemId and bottomNavView.selectedItemId == 0) onNavDestinationSelected(
                     item,
                     navController

@@ -1,5 +1,6 @@
 package com.indramahkota.common.utils
 
+import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.NavGraph
@@ -19,7 +20,7 @@ fun NavController.navigateSafe(directions: NavDirections) {
     }
 }
 
-fun NavController.navigateSafe(directions: Int) {
+fun NavController.navigateSafe(directions: Int, bundle: Bundle? = null) {
     // Get action by ID. If action doesn't exist on current node, return.
     val action = (currentDestination ?: graph).getAction(directions) ?: return
     var destId = action.destinationId
@@ -30,7 +31,7 @@ fun NavController.navigateSafe(directions: Int) {
         destId = dest.startDestinationId
     }
     if (currentDestination?.id != destId) {
-        navigate(directions)
+        navigate(directions, bundle)
     }
 }
 

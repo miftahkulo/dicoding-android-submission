@@ -9,4 +9,6 @@
         android:name="com.indramahkota.favorite.FavoriteFragment"
         android:label="FavoriteFragment" />
 
+    <include app:graph="@navigation/detail_graph" />
+
 </navigation>

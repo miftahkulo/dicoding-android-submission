@@ -26,8 +26,6 @@
         android:textSize="@dimen/textExtraLarge"
         android:textStyle="bold"
         android:translationZ="999dp"
-        app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_down_24"
-        app:drawableTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -6,10 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.indramahkota.app.R
 import com.indramahkota.app.databinding.FragmentListMovieBinding
 import com.indramahkota.app.presentation.adapter.MovieAdapter
 import com.indramahkota.common.base.BaseBindingFragment
 import com.indramahkota.common.base.BaseModel
+import com.indramahkota.common.utils.navigateSafe
+import timber.log.Timber
 import javax.inject.Inject
 
 const val IS_TV_ARG = "isTv"
@@ -42,7 +46,13 @@ class FavoriteListFragment : BaseBindingFragment() {
     }
 
     private fun initRecycleView() {
-        movieAdapter = MovieAdapter().also {
+        movieAdapter = MovieAdapter {
+            findNavController().navigate(R.id.detail_graph, Bundle().apply {
+                putParcelable("movie", it)
+            })
+
+            Timber.d("Movie Clicked")
+        }.also {
             it.setDatas(listOf())
         }
 

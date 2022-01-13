@@ -25,7 +25,9 @@ private class LoadingItemViewHolder(binding: VhMovieLoadingBinding) :
 private class MovieItemViewHolder(val binding: VhMovieBinding) :
     RecyclerView.ViewHolder(binding.root)
 
-class MovieAdapter : BaseRecyclerAdapter() {
+class MovieAdapter(
+    private val listener: (Movie) -> Unit
+) : BaseRecyclerAdapter() {
     private lateinit var context: Context
     private lateinit var inflater: LayoutInflater
 
@@ -62,6 +64,7 @@ class MovieAdapter : BaseRecyclerAdapter() {
         when (holder) {
             is MovieItemViewHolder -> {
                 val item = get(position) as Movie
+
                 with(holder.binding) {
                     txtTitle.text = item.title
                     txtOverview.text = item.overview
@@ -75,6 +78,10 @@ class MovieAdapter : BaseRecyclerAdapter() {
                         .load("${Constant.BASE_IMAGE_URL}/${item.posterPath}")
                         .transform(RoundedCorners(8.dpToPx(holder.itemView.context).toInt()))
                         .into(imgPoster)
+                }
+
+                holder.itemView.setOnClickListener {
+                    listener(item)
                 }
             }
             is EmptyViewHolder -> {
