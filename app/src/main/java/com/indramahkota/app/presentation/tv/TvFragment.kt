@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.indramahkota.app.databinding.FragmentTvBinding
+import com.indramahkota.app.databinding.FragmentMovieBinding
 import com.indramahkota.app.presentation.adapter.MovieAdapter
 import com.indramahkota.app.viewmodel.MovieViewModel
 import com.indramahkota.common.base.BaseBindingFragment
@@ -15,7 +15,7 @@ import com.indramahkota.domain.utils.Resource
 import timber.log.Timber
 
 class TvFragment : BaseBindingFragment() {
-    private var _binding: FragmentTvBinding? = null
+    private var _binding: FragmentMovieBinding? = null
     private val binding get() = _binding!!
 
     private val movieViewModel: MovieViewModel by activityViewModels()
@@ -23,7 +23,7 @@ class TvFragment : BaseBindingFragment() {
     private lateinit var movieAdapter: MovieAdapter
 
     override fun bindFragment(inflater: LayoutInflater, container: ViewGroup?): View {
-        _binding = FragmentTvBinding.inflate(inflater, container, false)
+        _binding = FragmentMovieBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -37,7 +37,7 @@ class TvFragment : BaseBindingFragment() {
             it.setDatas(listOf())
         }
 
-        with(binding.rvTv) {
+        with(binding.rvMovie) {
             adapter = movieAdapter
         }
     }
