@@ -136,6 +136,12 @@ abstract class BaseRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged()
     }
 
+    fun setEmpty(message: String) {
+        deleteEmpty()
+        deleteLoading()
+        addItem(EmptyModel(message))
+    }
+
     fun setLoading() {
         deleteEmpty()
         deleteLoading()

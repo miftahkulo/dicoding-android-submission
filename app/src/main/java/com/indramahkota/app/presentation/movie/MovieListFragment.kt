@@ -68,10 +68,15 @@ class MovieListFragment : BaseBindingFragment() {
             }
             is Resource.Success -> {
                 Timber.d("Success")
-                movieAdapter.setDatas(resource.data as List<BaseModel>)
+                if (resource.data!!.isNotEmpty()) {
+                    movieAdapter.setDatas(resource.data!! as List<BaseModel>)
+                } else {
+                    movieAdapter.setEmpty("Data is empty")
+                }
             }
             is Resource.Error -> {
                 Timber.d("Error")
+                movieAdapter.setEmpty(resource.message ?: "Error: Something happen")
             }
         }
     }

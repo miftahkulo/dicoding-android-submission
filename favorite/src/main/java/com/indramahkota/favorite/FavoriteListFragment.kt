@@ -59,7 +59,7 @@ class FavoriteListFragment : BaseBindingFragment() {
                     if (it.isNotEmpty()) {
                         movieAdapter.setDatas(it as List<BaseModel>)
                     } else {
-                        movieAdapter.addItem(EmptyModel("Data is empty"))
+                        movieAdapter.setEmpty("Data is empty")
                     }
                 }
             } else {
@@ -67,7 +67,7 @@ class FavoriteListFragment : BaseBindingFragment() {
                     if (it.isNotEmpty()) {
                         movieAdapter.setDatas(it as List<BaseModel>)
                     } else {
-                        movieAdapter.addItem(EmptyModel("Data is empty"))
+                        movieAdapter.setEmpty("Data is empty")
                     }
                 }
             }
