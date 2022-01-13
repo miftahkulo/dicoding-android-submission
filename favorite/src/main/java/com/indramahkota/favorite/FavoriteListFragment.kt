@@ -10,7 +10,6 @@ import com.indramahkota.app.databinding.FragmentListMovieBinding
 import com.indramahkota.app.presentation.adapter.MovieAdapter
 import com.indramahkota.common.base.BaseBindingFragment
 import com.indramahkota.common.base.BaseModel
-import com.indramahkota.common.base.EmptyModel
 import javax.inject.Inject
 
 const val IS_TV_ARG = "isTv"
