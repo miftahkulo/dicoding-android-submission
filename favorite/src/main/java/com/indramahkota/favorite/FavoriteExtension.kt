@@ -13,3 +13,13 @@ internal fun FavoriteFragment.inject() {
         )
     ).inject(this)
 }
+
+internal fun FavoriteListFragment.inject() {
+    DaggerFavoriteComponent.factory().create(
+        requireContext(),
+        EntryPointAccessors.fromApplication(
+            requireContext().applicationContext,
+            FavoriteDependencies::class.java
+        )
+    ).inject(this)
+}

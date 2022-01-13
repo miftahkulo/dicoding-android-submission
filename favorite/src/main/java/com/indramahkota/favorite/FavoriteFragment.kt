@@ -5,24 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
-import com.indramahkota.app.presentation.adapter.MovieAdapter
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import com.indramahkota.common.base.BaseBindingFragment
-import com.indramahkota.common.base.BaseModel
 import com.indramahkota.favorite.databinding.FragmentFavoriteBinding
-import javax.inject.Inject
+
+private const val NUM_PAGES = 2
 
 class FavoriteFragment : BaseBindingFragment() {
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: FavoriteViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory)[FavoriteViewModel::class.java]
-    }
-
-    private lateinit var movieAdapter: MovieAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -35,27 +28,37 @@ class FavoriteFragment : BaseBindingFragment() {
     }
 
     override fun setupUI(view: View, savedInstanceState: Bundle?) {
-        initRecycleView()
-        observeViewModel()
-    }
+        val pagerAdapter = ScreenSlidePagerAdapter(this)
 
-    private fun initRecycleView() {
-        movieAdapter = MovieAdapter().also {
-            it.setDatas(listOf())
-        }
-
-        with(binding.rvFavorite) {
-            adapter = movieAdapter
-        }
-    }
-
-    private fun observeViewModel() {
-        viewModel.getFavoriteMovies.observe(this) {
-            movieAdapter.setDatas(it as List<BaseModel>)
+        with(binding) {
+            pager.adapter = pagerAdapter
+            TabLayoutMediator(tab, pager) { tab, position ->
+                when (position) {
+                    1 -> tab.text = "Movie"
+                    else -> tab.text = "Tv"
+                }
+            }.attach()
         }
     }
 
     override fun unbindFragment() {
         _binding = null
+    }
+
+    private inner class ScreenSlidePagerAdapter(fa: Fragment) : FragmentStateAdapter(fa) {
+        override fun getItemCount(): Int = NUM_PAGES
+
+        override fun createFragment(position: Int): Fragment = when (position) {
+            1 -> FavoriteListFragment().apply {
+                arguments = Bundle().apply {
+                    putBoolean(IS_TV_ARG, false)
+                }
+            }
+            else -> FavoriteListFragment().apply {
+                arguments = Bundle().apply {
+                    putBoolean(IS_TV_ARG, true)
+                }
+            }
+        }
     }
 }

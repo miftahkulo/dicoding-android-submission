@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="favorite_favorite_title">Favorite</string>
+    <string name="favorite_movie_title">Movie</string>
+    <string name="favorite_tv_title">Tv</string>
 </resources>

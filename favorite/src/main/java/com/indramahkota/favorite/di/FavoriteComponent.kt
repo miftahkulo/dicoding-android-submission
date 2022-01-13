@@ -3,6 +3,7 @@ package com.indramahkota.favorite.di
 import android.content.Context
 import com.indramahkota.favorite.FavoriteFragment
 import com.indramahkota.app.di.FavoriteDependencies
+import com.indramahkota.favorite.FavoriteListFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -22,4 +23,5 @@ interface FavoriteComponent {
     }
 
     fun inject(fragment: FavoriteFragment)
+    fun inject(fragment: FavoriteListFragment)
 }
