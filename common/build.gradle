@@ -53,4 +53,11 @@ dependencies {
 
     // Timber
     api Libs.Timber.timber
+
+    // Test
+    testImplementation Libs.JUnit.junit
+    androidTestImplementation Libs.AndroidX.Test.core
+    androidTestImplementation Libs.AndroidX.Test.rules
+    androidTestImplementation Libs.AndroidX.Test.Ext.junit
+    androidTestImplementation Libs.AndroidX.Test.espressoCore
 }

@@ -65,4 +65,11 @@ dependencies {
     // Retrofit
     api Libs.Retrofit.retrofit
     api Libs.Retrofit.gsonConverter
+
+    // Test
+    testImplementation Libs.JUnit.junit
+    androidTestImplementation Libs.AndroidX.Test.core
+    androidTestImplementation Libs.AndroidX.Test.rules
+    androidTestImplementation Libs.AndroidX.Test.Ext.junit
+    androidTestImplementation Libs.AndroidX.Test.espressoCore
 }
