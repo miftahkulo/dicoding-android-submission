@@ -11,6 +11,7 @@ import com.indramahkota.app.R
 import com.indramahkota.app.databinding.FragmentListMovieBinding
 import com.indramahkota.app.presentation.adapter.MovieAdapter
 import com.indramahkota.app.viewmodel.MovieViewModel
+import com.indramahkota.app.viewmodel.SharedViewModel
 import com.indramahkota.common.base.BaseBindingFragment
 import com.indramahkota.common.base.BaseModel
 import com.indramahkota.common.base.LoadingModel
@@ -25,6 +26,7 @@ class MovieListFragment : BaseBindingFragment() {
     private val args: MovieListFragmentArgs by navArgs()
 
     private val movieViewModel: MovieViewModel by activityViewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     private lateinit var movieAdapter: MovieAdapter
 
@@ -34,6 +36,8 @@ class MovieListFragment : BaseBindingFragment() {
     }
 
     override fun setupUI(view: View, savedInstanceState: Bundle?) {
+        sharedViewModel.isDetailPage.value = false
+
         initRecycleView()
         observeViewModel()
     }

@@ -67,7 +67,7 @@ class MovieAppRepositoryImpl @Inject constructor(
         }
 
     override fun setMovieFavorite(movie: Movie, favorite: Boolean) {
-        val movieEntity = movie.toMovieEntity(movie.favorite)
+        val movieEntity = movie.toMovieEntity(movie.isTvShows)
         appExecutors.diskIO().execute { localDataSource.setMovieFavorite(movieEntity, favorite) }
     }
 }

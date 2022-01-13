@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import com.indramahkota.app.viewmodel.SharedViewModel
 import com.indramahkota.common.base.BaseBindingFragment
 import com.indramahkota.favorite.databinding.FragmentFavoriteBinding
 
@@ -16,6 +18,8 @@ private const val NUM_PAGES = 2
 class FavoriteFragment : BaseBindingFragment() {
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
+
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -28,6 +32,8 @@ class FavoriteFragment : BaseBindingFragment() {
     }
 
     override fun setupUI(view: View, savedInstanceState: Bundle?) {
+        sharedViewModel.isDetailPage.value = false
+
         val pagerAdapter = ScreenSlidePagerAdapter(this)
 
         with(binding) {
