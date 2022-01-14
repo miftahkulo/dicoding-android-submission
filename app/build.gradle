@@ -86,4 +86,7 @@ dependencies {
     androidTestImplementation Libs.AndroidX.Test.rules
     androidTestImplementation Libs.AndroidX.Test.Ext.junit
     androidTestImplementation Libs.AndroidX.Test.espressoCore
+
+    // LeakCanary
+    debugImplementation Libs.LeakCanary.leakcanary
 }

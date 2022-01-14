@@ -152,6 +152,11 @@ object Libs {
         const val shimmer = "com.facebook.shimmer:shimmer:$version"
     }
 
+    object LeakCanary {
+        private const val version = "2.6"
+        const val leakcanary = "com.squareup.leakcanary:leakcanary-android:$version"
+    }
+
     object JUnit {
         private const val version = "4.13.2"
         const val junit = "junit:junit:$version"
