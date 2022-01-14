@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Moveous</string>
-    <string name="app_logo">App Logo</string>
-    <string name="hello_world">Hello World</string>
-    <string name="title_favorite">Favorite</string>
     <string name="movie_title">Movie</string>
     <string name="tv_title">TV</string>
     <string name="favorite_title">Favorite</string>

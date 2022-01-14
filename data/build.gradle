@@ -18,6 +18,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("String", "KEY", '"0baf2c567988149d686a1289304f46cb"')
     }
 
     buildTypes {
