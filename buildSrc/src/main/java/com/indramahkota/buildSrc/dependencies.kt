@@ -106,6 +106,11 @@ object Libs {
             const val ktx = "androidx.room:room-ktx:$version"
             const val compiler = "androidx.room:room-compiler:$version"
         }
+
+        object SQLiteKtx {
+            private const val version = "2.2.0"
+            const val sqliteKtx = "androidx.sqlite:sqlite-ktx:$version"
+        }
     }
 
     object Dagger {
@@ -155,6 +160,11 @@ object Libs {
     object LeakCanary {
         private const val version = "2.6"
         const val leakcanary = "com.squareup.leakcanary:leakcanary-android:$version"
+    }
+
+    object SqlCipher {
+        private const val version = "4.4.0"
+        const val sqlcipher = "net.zetetic:android-database-sqlcipher:$version"
     }
 
     object JUnit {
