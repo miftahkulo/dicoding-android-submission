@@ -1,6 +1,6 @@
 # Menjadi Android Developer Expert
 
-[![GitHub](https://img.shields.io/github/license/indramahkota/dicoding-android-submission?color=blue)](https://github.com/indramahkota/dicoding-android-submission/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/indramahkota/dicoding-android-submission)](https://github.com/indramahkota/dicoding-android-submission/stargazers)  [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+[![GitHub](https://img.shields.io/github/license/indramahkota/dicoding-android-submission?color=blue)](https://github.com/indramahkota/dicoding-android-submission/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/indramahkota/dicoding-android-submission)](https://github.com/indramahkota/dicoding-android-submission/stargazers)  [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors) [![Circle CI](https://circleci.com/gh/indramahkota/dicoding-android-submission.svg?style=shield)](https://circleci.com/gh/indramahkota/dicoding-android-submission)
 
 <img src="https://raw.githubusercontent.com/indramahkota/indramahkota.github.io/master/assets/githubs/moveous_1.png" alt="drawing" width="200"/><img src="https://raw.githubusercontent.com/indramahkota/indramahkota.github.io/master/assets/githubs/moveous_2.png" alt="drawing" width="200"/>
 
