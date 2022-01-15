@@ -3,16 +3,17 @@ package com.indramahkota.app.di
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.indramahkota.app.BuildConfig
 import com.indramahkota.common.utils.Constant
+import com.indramahkota.data.source.remote.interceptor.ApiKeyInterceptor
 import com.indramahkota.data.source.remote.interceptor.ConnectivityInterceptor
 import com.indramahkota.data.source.remote.network.ApiService
-import com.indramahkota.app.BuildConfig
-import com.indramahkota.data.source.remote.interceptor.ApiKeyInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -46,12 +47,23 @@ object NetModule {
         connectivityInterceptor: ConnectivityInterceptor,
         httpLoggingInterceptor: HttpLoggingInterceptor,
         apiKeyInterceptor: ApiKeyInterceptor
-    ) = OkHttpClient
-        .Builder().apply {
-            addInterceptor(httpLoggingInterceptor)
-            addInterceptor(connectivityInterceptor)
-            addInterceptor(apiKeyInterceptor)
+    ): OkHttpClient {
+        val hostname = Constant.API_URL
+        val certPinner = CertificatePinner.Builder().apply {
+            add(hostname, BuildConfig.CERT1)
+            add(hostname, BuildConfig.CERT2)
+            add(hostname, BuildConfig.CERT3)
+            add(hostname, BuildConfig.CERT4)
         }.build()
+
+        return OkHttpClient
+            .Builder().apply {
+                addInterceptor(httpLoggingInterceptor)
+                addInterceptor(connectivityInterceptor)
+                addInterceptor(apiKeyInterceptor)
+                certificatePinner(certPinner)
+            }.build()
+    }
 
     @Provides
     @Singleton

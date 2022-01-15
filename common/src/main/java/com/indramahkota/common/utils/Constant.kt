@@ -3,7 +3,8 @@ package com.indramahkota.common.utils
 object Constant {
     /** Constant **/
     const val DB_NAME = "moveous.db"
-    const val BASE_URL = "https://api.themoviedb.org/3/discover/"
+    const val API_URL = "api.themoviedb.org"
+    const val BASE_URL = "https://$API_URL/3/discover/"
     // ref: https://www.themoviedb.org/talk/53c11d4ec3a3684cf4006400
     const val BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w342"
 
