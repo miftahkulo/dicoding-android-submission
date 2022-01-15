@@ -12,7 +12,7 @@ android {
     compileSdk project.ext.compileSdk
 
     defaultConfig {
-        applicationId "com.indramahkota.hiltexample"
+        applicationId "com.indramahkota.app"
         minSdk project.ext.minSdk
         targetSdk project.ext.targetSdk
         versionCode project.ext.versionCode
@@ -23,11 +23,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
