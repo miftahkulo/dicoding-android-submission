@@ -12,7 +12,7 @@ android {
     compileSdk project.ext.compileSdk
 
     defaultConfig {
-        applicationId "com.indramahkota.hiltexample"
+        applicationId "com.indramahkota.app"
         minSdk project.ext.minSdk
         targetSdk project.ext.targetSdk
         versionCode project.ext.versionCode
@@ -86,4 +86,7 @@ dependencies {
     androidTestImplementation Libs.AndroidX.Test.rules
     androidTestImplementation Libs.AndroidX.Test.Ext.junit
     androidTestImplementation Libs.AndroidX.Test.espressoCore
+
+    // LeakCanary
+    debugImplementation Libs.LeakCanary.leakcanary
 }

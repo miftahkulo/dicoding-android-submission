@@ -18,6 +18,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("String", "API_KEY", '"0baf2c567988149d686a1289304f46cb"')
+        buildConfigField("String", "SECRET_KEY", '"uOkN2znQ2cN28PFR5xHl6c22pwEcq76S4zWQvYbhfLM4Jl3VgLWt1dsQEzB3kZci"')
     }
 
     buildTypes {
@@ -48,6 +51,10 @@ kapt {
 dependencies {
     implementation project(":common")
     implementation project(":domain")
+
+    // SqlCipher
+    implementation Libs.SqlCipher.sqlcipher
+    implementation Libs.AndroidX.SQLiteKtx.sqliteKtx
 
     // Hilt
     implementation Libs.Dagger.hiltAndroid

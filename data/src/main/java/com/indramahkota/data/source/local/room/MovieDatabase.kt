@@ -4,7 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.indramahkota.data.BuildConfig
 import com.indramahkota.data.source.local.entity.MovieEntity
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 
 @Database(
     entities = [
@@ -21,6 +24,9 @@ abstract class MovieDatabase : RoomDatabase() {
         private var instance: MovieDatabase? = null
         private val LOCK = Any()
 
+        private val passphrase: ByteArray = SQLiteDatabase.getBytes(BuildConfig.SECRET_KEY.toCharArray())
+        val factory = SupportFactory(passphrase)
+
         operator fun invoke(context: Context, name: String) = instance ?: synchronized(LOCK) {
             instance ?: buildDatabase(context, name).also { instance = it }
         }
@@ -31,6 +37,7 @@ abstract class MovieDatabase : RoomDatabase() {
             name
         )
             .fallbackToDestructiveMigrationFrom(1)
+            .openHelperFactory(factory)
             .build()
     }
 }
