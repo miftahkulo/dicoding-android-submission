@@ -19,7 +19,6 @@ fun MovieDto.toMovieEntity(isTvShow: Boolean = false) = MovieEntity(
     favorite = false
 )
 
-@JvmName("toListMovieEntity1")
 fun List<MovieDto>.toListMovieEntity(isTvShow: Boolean = false) =
     this.map {
         it.toMovieEntity(isTvShow)

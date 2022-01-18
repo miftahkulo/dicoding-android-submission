@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.indramahkota.app.R
@@ -17,6 +18,7 @@ import com.indramahkota.common.base.BaseModel
 import com.indramahkota.common.base.LoadingModel
 import com.indramahkota.domain.model.Movie
 import com.indramahkota.domain.utils.Resource
+import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
 
 class MovieListFragment : BaseBindingFragment() {
@@ -40,6 +42,7 @@ class MovieListFragment : BaseBindingFragment() {
 
         initRecycleView()
         observeViewModel()
+        initViewModel()
     }
 
     private fun initRecycleView() {
@@ -59,37 +62,45 @@ class MovieListFragment : BaseBindingFragment() {
     }
 
     private fun observeViewModel() {
+        lifecycleScope.launchWhenStarted {
+            if (!args.isTv) {
+                movieViewModel.movies.collectLatest {
+                    if (it != null)
+                        handleResource(it)
+                }
+            } else {
+                movieViewModel.tvs.collectLatest {
+                    if (it != null)
+                        handleResource(it)
+                }
+            }
+        }
+    }
+
+    private fun initViewModel() {
         if (!args.isTv) {
-            movieViewModel.getMovies.observe(this) {
-                handleResource(it)
-            }
+            movieViewModel.getMovies("Newest")
         } else {
-            movieViewModel.getTv.observe(this) {
-                handleResource(it)
-            }
+            movieViewModel.getTvs("Newest")
         }
     }
 
     private fun handleResource(resource: Resource<List<Movie>>) {
         when (resource) {
             is Resource.Loading -> {
-                Timber.d("Loading")
-                for (i in 1..10) {
+                for (i in 1..10)
                     movieAdapter.addItem(LoadingModel())
-                }
             }
             is Resource.Success -> {
-                Timber.d("Success")
                 if (resource.data!!.isNotEmpty()) {
                     movieAdapter.setDatas(resource.data!! as List<BaseModel>)
                 } else {
                     movieAdapter.setEmpty("Data is empty")
                 }
             }
-            is Resource.Error -> {
-                Timber.d("Error")
-                movieAdapter.setEmpty(resource.message ?: "Error: Something happen")
-            }
+            is Resource.Error -> movieAdapter.setEmpty(
+                resource.message ?: "Error: Something happen"
+            )
         }
     }
 

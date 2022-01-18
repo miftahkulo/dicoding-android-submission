@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.indramahkota.app.R
 import com.indramahkota.app.databinding.FragmentListMovieBinding
 import com.indramahkota.app.presentation.adapter.MovieAdapter
 import com.indramahkota.common.base.BaseBindingFragment
 import com.indramahkota.common.base.BaseModel
+import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -42,6 +44,7 @@ class FavoriteListFragment : BaseBindingFragment() {
     override fun setupUI(view: View, savedInstanceState: Bundle?) {
         initRecycleView()
         observeViewModel()
+        initViewModel()
     }
 
     private fun initRecycleView() {
@@ -61,23 +64,35 @@ class FavoriteListFragment : BaseBindingFragment() {
     }
 
     private fun observeViewModel() {
+        lifecycleScope.launchWhenStarted {
+            arguments?.takeIf { it.containsKey(IS_TV_ARG) }?.apply {
+                if (!getBoolean(IS_TV_ARG)) {
+                    viewModel.movies.collectLatest {
+                        if (it?.isNotEmpty() == true) {
+                            movieAdapter.setDatas(it as List<BaseModel>)
+                        } else {
+                            movieAdapter.setEmpty("Data is empty")
+                        }
+                    }
+                } else {
+                    viewModel.tvs.collectLatest {
+                        if (it?.isNotEmpty() == true) {
+                            movieAdapter.setDatas(it as List<BaseModel>)
+                        } else {
+                            movieAdapter.setEmpty("Data is empty")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun initViewModel() {
         arguments?.takeIf { it.containsKey(IS_TV_ARG) }?.apply {
             if (!getBoolean(IS_TV_ARG)) {
-                viewModel.getFavoriteMovies.observe(this@FavoriteListFragment) {
-                    if (it.isNotEmpty()) {
-                        movieAdapter.setDatas(it as List<BaseModel>)
-                    } else {
-                        movieAdapter.setEmpty("Data is empty")
-                    }
-                }
+                viewModel.getMovies("Newest")
             } else {
-                viewModel.getFavoriteTv.observe(this@FavoriteListFragment) {
-                    if (it.isNotEmpty()) {
-                        movieAdapter.setDatas(it as List<BaseModel>)
-                    } else {
-                        movieAdapter.setEmpty("Data is empty")
-                    }
-                }
+                viewModel.getTvs("Newest")
             }
         }
     }

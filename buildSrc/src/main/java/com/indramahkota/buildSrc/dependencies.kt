@@ -91,6 +91,7 @@ object Libs {
             private const val version = "1.4.0"
             const val core = "androidx.test:core:$version"
             const val rules = "androidx.test:rules:$version"
+            const val coreTesting = "androidx.arch.core:core-testing:2.1.0"
 
             object Ext {
                 private const val version = "1.1.3"
@@ -170,5 +171,11 @@ object Libs {
     object JUnit {
         private const val version = "4.13.2"
         const val junit = "junit:junit:$version"
+    }
+
+    object Mockito {
+        private const val version = "4.2.0"
+        const val core = "org.mockito:mockito-core:$version"
+        const val inline = "org.mockito:mockito-inline:$version"
     }
 }
