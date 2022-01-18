@@ -31,7 +31,7 @@ fun MovieEntity.toMovie(isTvShow: Boolean = false) = Movie(
     posterPath = posterPath,
     overview = overview,
     originalLanguage = originalLanguage,
-    releaseDate = formatDateFromString(releaseDate, "yyyy-MM-dd", "EE, d MMM yyyy"),
+    releaseDate = releaseDate,
     popularity = popularity,
     voteAverage = voteAverage,
     isTvShows = isTvShow,

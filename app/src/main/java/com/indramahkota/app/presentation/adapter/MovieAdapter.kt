@@ -17,6 +17,7 @@ import com.indramahkota.common.utils.Constant
 import com.indramahkota.common.utils.Constant.TYPE_EMPTY
 import com.indramahkota.common.utils.Constant.TYPE_LOADING
 import com.indramahkota.common.utils.dpToPx
+import com.indramahkota.data.utils.formatDateFromString
 import com.indramahkota.domain.model.Movie
 
 private class LoadingItemViewHolder(binding: VhMovieLoadingBinding) :
@@ -69,7 +70,8 @@ class MovieAdapter(
                     txtTitle.text = item.title
                     txtOverview.text = item.overview
                     txtRating.text = item.voteAverage.toString()
-                    txtReleaseDate.text = item.releaseDate
+                    txtReleaseDate.text =
+                        formatDateFromString(item.releaseDate, "yyyy-MM-dd", "EE, d MMM yyyy")
 
                     if (item.favorite) imgBookmark.visibility =
                         View.VISIBLE else imgBookmark.visibility = View.GONE

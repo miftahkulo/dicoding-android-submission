@@ -63,7 +63,7 @@ class HomeFragment : BaseBindingFragment() {
             }
 
             incHeader.favoriteBtn.setOnClickListener {
-                val movie = sharedViewModel.isMovieFavorite.value
+                val movie = sharedViewModel.isMovieFavorite.value?.copy()
                 if (movie != null) {
                     movie.favorite = !movie.favorite
                     movieViewModel.setFavorite(movie, movie.favorite)
