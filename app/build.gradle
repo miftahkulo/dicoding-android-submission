@@ -47,6 +47,10 @@ android {
         jvmTarget = '1.8'
     }
 
+    lintOptions {
+        disable "Instantiatable"
+    }
+
     buildFeatures {
         viewBinding true
     }
