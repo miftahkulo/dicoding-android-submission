@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.indramahkota.domain.model.Movie
 import com.indramahkota.domain.usecase.MovieAppUseCase
 import com.indramahkota.domain.utils.Resource
+import com.indramahkota.domain.utils.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
@@ -17,24 +17,44 @@ import javax.inject.Inject
 class MovieViewModel @Inject constructor(
     private val useCase: MovieAppUseCase
 ) : ViewModel() {
-    private val _movies: MutableStateFlow<Resource<List<Movie>>?> = MutableStateFlow(null)
-    val movies: StateFlow<Resource<List<Movie>>?> = _movies
+    private val _movies = MutableStateFlow<UIState<List<Movie>>>(UIState.Empty())
+    val movies: StateFlow<UIState<List<Movie>>> = _movies
 
     fun getMovies(sort: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             useCase.getAllMovies(sort).collect {
-                _movies.value = it
+                when (it) {
+                    is Resource.Success -> {
+                        _movies.value = UIState.Success(it.data!!)
+                    }
+                    is Resource.Error -> {
+                        _movies.value = UIState.Error(it.message!!, it.data)
+                    }
+                    is Resource.Loading -> {
+                        _movies.value = UIState.Loading(it.data)
+                    }
+                }
             }
         }
     }
 
-    private val _tvs: MutableStateFlow<Resource<List<Movie>>?> = MutableStateFlow(null)
-    val tvs: StateFlow<Resource<List<Movie>>?> = _tvs
+    private val _tvs = MutableStateFlow<UIState<List<Movie>>>(UIState.Empty())
+    val tvs: StateFlow<UIState<List<Movie>>> = _tvs
 
     fun getTvs(sort: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             useCase.getAllTvShows(sort).collect {
-                _tvs.value = it
+                when (it) {
+                    is Resource.Success -> {
+                        _tvs.value = UIState.Success(it.data!!)
+                    }
+                    is Resource.Error -> {
+                        _tvs.value = UIState.Error(it.message!!, it.data)
+                    }
+                    is Resource.Loading -> {
+                        _tvs.value = UIState.Loading(it.data)
+                    }
+                }
             }
         }
     }

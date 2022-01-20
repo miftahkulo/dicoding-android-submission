@@ -17,7 +17,7 @@ import com.indramahkota.common.base.BaseBindingFragment
 import com.indramahkota.common.base.BaseModel
 import com.indramahkota.common.base.LoadingModel
 import com.indramahkota.domain.model.Movie
-import com.indramahkota.domain.utils.Resource
+import com.indramahkota.domain.utils.UIState
 import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
 
@@ -65,13 +65,11 @@ class MovieListFragment : BaseBindingFragment() {
         lifecycleScope.launchWhenStarted {
             if (!args.isTv) {
                 movieViewModel.movies.collectLatest {
-                    if (it != null)
-                        handleResource(it)
+                    handleResource(it)
                 }
             } else {
                 movieViewModel.tvs.collectLatest {
-                    if (it != null)
-                        handleResource(it)
+                    handleResource(it)
                 }
             }
         }
@@ -85,22 +83,23 @@ class MovieListFragment : BaseBindingFragment() {
         }
     }
 
-    private fun handleResource(resource: Resource<List<Movie>>) {
-        when (resource) {
-            is Resource.Loading -> {
+    private fun handleResource(state: UIState<List<Movie>>) {
+        when (state) {
+            is UIState.Loading -> {
                 for (i in 1..10)
                     movieAdapter.addItem(LoadingModel())
             }
-            is Resource.Success -> {
-                if (resource.data!!.isNotEmpty()) {
-                    movieAdapter.setDatas(resource.data!! as List<BaseModel>)
+            is UIState.Success -> {
+                if (!state.data.isNullOrEmpty()) {
+                    movieAdapter.setDatas(state.data as List<BaseModel>)
                 } else {
                     movieAdapter.setEmpty("Data is empty")
                 }
             }
-            is Resource.Error -> movieAdapter.setEmpty(
-                resource.message ?: "Error: Something happen"
+            is UIState.Error -> movieAdapter.setEmpty(
+                state.message ?: "Error: Something happen"
             )
+            else -> {}
         }
     }
 

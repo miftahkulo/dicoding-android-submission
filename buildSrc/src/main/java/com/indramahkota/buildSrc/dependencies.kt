@@ -6,7 +6,8 @@ object Versions {
 
 object Libs {
     const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.4"
-    const val secretsGradlePlugin = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.0"
+    const val secretsGradlePlugin =
+        "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.0"
 
     object Kotlin {
         private const val version = "1.6.10"
@@ -44,7 +45,8 @@ object Libs {
 
         object Constraint {
             const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.2"
-            const val constraintLayoutCompose = "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc02"
+            const val constraintLayoutCompose =
+                "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc02"
         }
 
         object Compose {
@@ -57,7 +59,8 @@ object Libs {
 
             const val ui = "androidx.compose.ui:ui:$composeVersion"
             const val material = "androidx.compose.material:material:$composeVersion"
-            const val materialIconsExtended = "androidx.compose.material:material-icons-extended:$composeVersion"
+            const val materialIconsExtended =
+                "androidx.compose.material:material-icons-extended:$composeVersion"
 
             const val tooling = "androidx.compose.ui:ui-tooling:$composeVersion"
             const val uiTest = "androidx.compose.ui:ui-test-junit4:$composeVersion"
@@ -73,12 +76,14 @@ object Libs {
 
         object Navigation {
             private const val version = "2.4.0-rc01"
-            const val navigationSafeArguments = "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
+            const val navigationSafeArguments =
+                "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
             const val compose = "androidx.navigation:navigation-compose:$version"
 
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
             const val ui = "androidx.navigation:navigation-ui-ktx:$version"
-            const val dynamicFeaturesFragment = "androidx.navigation:navigation-dynamic-features-fragment:$version"
+            const val dynamicFeaturesFragment =
+                "androidx.navigation:navigation-dynamic-features-fragment:$version"
             const val testing = "androidx.navigation:navigation-testing:$version"
         }
 
@@ -121,7 +126,8 @@ object Libs {
         const val hiltAndroid = "com.google.dagger:hilt-android:$version"
         const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:$version"
         const val hiltAndroidTesting = "com.google.dagger:hilt-android-testing:$version"
-        const val hiltLifecycleViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:$hiltLifecycleViewModelVersion"
+        const val hiltLifecycleViewModel =
+            "androidx.hilt:hilt-lifecycle-viewmodel:$hiltLifecycleViewModelVersion"
         const val hiltCompiler = "androidx.hilt:hilt-compiler:$version"
     }
 
@@ -177,5 +183,10 @@ object Libs {
         private const val version = "4.2.0"
         const val core = "org.mockito:mockito-core:$version"
         const val inline = "org.mockito:mockito-inline:$version"
+    }
+
+    object Turbine {
+        private const val version = "0.7.0"
+        const val turbine = "app.cash.turbine:turbine:$version"
     }
 }
