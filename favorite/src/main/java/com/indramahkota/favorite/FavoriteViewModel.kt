@@ -14,24 +14,24 @@ import javax.inject.Inject
 class FavoriteViewModel @Inject constructor(
     private val useCase: MovieAppUseCase
 ) : ViewModel() {
-    private val _movies: MutableStateFlow<List<Movie>?> = MutableStateFlow(null)
-    val movies: StateFlow<List<Movie>?> = _movies
+    private val _movies: MutableStateFlow<List<Movie>> = MutableStateFlow(emptyList())
+    val movies: StateFlow<List<Movie>> = _movies
 
     fun getMovies(sort: String) {
         viewModelScope.launch(Dispatchers.IO) {
             useCase.getFavoriteMovies(sort).collect {
-                _movies.value = it
+                _movies.emit(it)
             }
         }
     }
 
-    private val _tvs: MutableStateFlow<List<Movie>?> = MutableStateFlow(null)
-    val tvs: StateFlow<List<Movie>?> = _tvs
+    private val _tvs: MutableStateFlow<List<Movie>> = MutableStateFlow(emptyList())
+    val tvs: StateFlow<List<Movie>> = _tvs
 
     fun getTvs(sort: String) {
         viewModelScope.launch(Dispatchers.IO) {
             useCase.getFavoriteTvShows(sort).collect {
-                _tvs.value = it
+                _tvs.emit(it)
             }
         }
     }

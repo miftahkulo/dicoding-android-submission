@@ -68,7 +68,7 @@ class FavoriteListFragment : BaseBindingFragment() {
             arguments?.takeIf { it.containsKey(IS_TV_ARG) }?.apply {
                 if (!getBoolean(IS_TV_ARG)) {
                     viewModel.movies.collectLatest {
-                        if (it?.isNotEmpty() == true) {
+                        if (it.isNotEmpty()) {
                             movieAdapter.setDatas(it as List<BaseModel>)
                         } else {
                             movieAdapter.setEmpty("Data is empty")
@@ -76,7 +76,7 @@ class FavoriteListFragment : BaseBindingFragment() {
                     }
                 } else {
                     viewModel.tvs.collectLatest {
-                        if (it?.isNotEmpty() == true) {
+                        if (it.isNotEmpty()) {
                             movieAdapter.setDatas(it as List<BaseModel>)
                         } else {
                             movieAdapter.setEmpty("Data is empty")

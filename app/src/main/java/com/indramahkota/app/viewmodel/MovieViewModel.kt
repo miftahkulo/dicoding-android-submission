@@ -2,11 +2,13 @@ package com.indramahkota.app.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.indramahkota.app.di.IoDispatcher
 import com.indramahkota.domain.model.Movie
 import com.indramahkota.domain.usecase.MovieAppUseCase
 import com.indramahkota.domain.utils.Resource
 import com.indramahkota.domain.utils.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
@@ -15,25 +17,28 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieViewModel @Inject constructor(
-    private val useCase: MovieAppUseCase
+    private val useCase: MovieAppUseCase,
+    @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
     private val _movies = MutableStateFlow<UIState<List<Movie>>>(UIState.Empty())
     val movies: StateFlow<UIState<List<Movie>>> = _movies
 
     fun getMovies(sort: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
             useCase.getAllMovies(sort).collect {
-                when (it) {
-                    is Resource.Success -> {
-                        _movies.value = UIState.Success(it.data!!)
+                _movies.emit(
+                    when (it) {
+                        is Resource.Success -> {
+                            UIState.Success(it.data!!)
+                        }
+                        is Resource.Error -> {
+                            UIState.Error(it.message!!, it.data)
+                        }
+                        is Resource.Loading -> {
+                            UIState.Loading(it.data)
+                        }
                     }
-                    is Resource.Error -> {
-                        _movies.value = UIState.Error(it.message!!, it.data)
-                    }
-                    is Resource.Loading -> {
-                        _movies.value = UIState.Loading(it.data)
-                    }
-                }
+                )
             }
         }
     }
@@ -42,19 +47,21 @@ class MovieViewModel @Inject constructor(
     val tvs: StateFlow<UIState<List<Movie>>> = _tvs
 
     fun getTvs(sort: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
             useCase.getAllTvShows(sort).collect {
-                when (it) {
-                    is Resource.Success -> {
-                        _tvs.value = UIState.Success(it.data!!)
+                _tvs.emit(
+                    when (it) {
+                        is Resource.Success -> {
+                            UIState.Success(it.data!!)
+                        }
+                        is Resource.Error -> {
+                            UIState.Error(it.message!!, it.data)
+                        }
+                        is Resource.Loading -> {
+                            UIState.Loading(it.data)
+                        }
                     }
-                    is Resource.Error -> {
-                        _tvs.value = UIState.Error(it.message!!, it.data)
-                    }
-                    is Resource.Loading -> {
-                        _tvs.value = UIState.Loading(it.data)
-                    }
-                }
+                )
             }
         }
     }

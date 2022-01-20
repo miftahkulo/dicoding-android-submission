@@ -1,7 +1,5 @@
 package com.indramahkota.data
 
-import androidx.annotation.MainThread
-import androidx.annotation.WorkerThread
 import com.indramahkota.data.source.remote.network.ApiEmptyResponse
 import com.indramahkota.data.source.remote.network.ApiErrorResponse
 import com.indramahkota.data.source.remote.network.ApiResponse
@@ -36,16 +34,12 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
         }
     }
 
-    @WorkerThread
     protected abstract suspend fun saveCallResult(data: RequestType)
 
-    @MainThread
     protected abstract fun shouldFetch(data: ResultType): Boolean
 
-    @MainThread
     protected abstract fun loadFromDb(): Flow<ResultType>
 
-    @MainThread
     protected abstract suspend fun createCall(): ApiResponse<RequestType>
 
     protected open fun onFetchFailed() {}
